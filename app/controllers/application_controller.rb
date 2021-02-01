@@ -17,6 +17,13 @@ class ApplicationController < Sinatra::Base
   post '/login'
     if redirect_if_not_logged_in
     else
+      @patient = Patient.find(session["user_id"])
+      @histories = History.new(params)
+      @histories.patient_id = @patient.id
+      @subjectives = Subjective.new(params)
+      @subjectives.patient_id = @patient.id
+      @comments = Comment.new(params)
+      @comments.patient_id = @patient.id
       erb :show
     end
  end
@@ -30,7 +37,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-
   get '/error' do
     erb :error
 end
@@ -38,7 +44,7 @@ end
   helpers do
 
     def current_user # memoization
-        @current_user ||= Patient.find_by_id(session["user_id"]) if session["user_id"]
+        @current_user ||= Patient.find_by_id(session["patient_id"]) if session["patient_id"]
     end
 
     def logged_in?

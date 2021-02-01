@@ -5,11 +5,6 @@ class PatientController < ApplicationController
         erb :new
     end
     
-    get '/login' do
-        redirect_if_logged_in
-        erb :login
-    end
-    
     post '/signup' do
         patient = Patient.new(username: params["username"], password: params["password"])
         if patient.save
@@ -20,6 +15,11 @@ class PatientController < ApplicationController
         end
     end
 
+    get '/login' do
+        redirect_if_logged_in
+        erb :login
+    end
+
     post '/login' do
         patient = Patient.username(params["username"])
         if patient.authenticate(params["username"])
@@ -28,7 +28,7 @@ class PatientController < ApplicationController
         else
             "Invalid login"
             sleep 1
-            redirect "/login"
+            redirect '/login'
         end
     end
 

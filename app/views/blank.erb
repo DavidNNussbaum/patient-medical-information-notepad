@@ -1,4 +1,4 @@
-<h1>Medical Information For @patient %></h1>
+<h1>Medical Information For <%= @patient %></h1>
 <form method="post" action="/histories">
     Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"> <% # placeholder="password" %>
     Medications: <input type="medications" name="histories[medications]" >
