@@ -1,4 +1,8 @@
-Patient.new(username: “”, password_digest: “”)
-History.new(diagnoses: “”, medications: “”, allergies: “”, current_treatments: “”, surgeries: “”, immunizations_with_dates: “”)
-Subjective.new(location: “”, observed_changes: “”, sensation_changes: “”, scale_1_to_10: “”, length_of_time: “”)
-Comments.new(note: “”, items_to_discuss: “”, questions:””}
+Patient.create(username: 'ham', password_digest: '5678')
+Patient.create(username: 'doe', password_digest: 'pract')
+History.create(diagnoses: 'porcelin', medications: 'atarax', allergies: 'betadine', current_treatments: 'soaks', surgeries: 'tonsillectomy', immunizations_with_dates: 'polio -1/14/67')
+History.create(diagnoses: 'gout', medications: 'allopurinal', allergies: 'none', current_treatments: 'rubbing', surgeries: 'cholecystectomy', immunizations_with_dates: 'antra- 5/14/32')
+Subjective.create(location: 'foot', observed_changes: 'dry', sensation_changes: 'itching', scale_1_to_10: '4', length_of_time: '2 months')
+Subjective.create(location: 'hand', observed_changes: 'moist', sensation_changes: 'pinching', scale_1_to_10: '3', length_of_time: '1 year')
+Comment.create(note: 'Pew', items_to_discuss: 'hair', questions:'Let me know')
+Comment.create(note: 'Wow!', items_to_discuss: 'nails', questions:'Who knows?')

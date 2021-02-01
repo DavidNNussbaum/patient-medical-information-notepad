@@ -1,0 +1,56 @@
+<h1>Medical Information For <%= @patient %></h1>
+<form method="post" action="/info">
+    Medical Conditions: <input type="" name="history[diagnosis]"> <% # placeholder="password" %>
+    Medications: <input type="password" name="password" >
+    Allergies: <input type="email" name="email" placeholder="email">
+    Current Treatments: <input type="password" name="password" placeholder="password">
+    Surgeries: <input type="email" name="email" placeholder="email">
+    Immunizations With Dates: <input type="password" name="password" placeholder="password">
+    Location of the Problem:<input type="email" name="email" placeholder="email">
+    Any Observed Changes: <input type="password" name="password" placeholder="password">
+    What You Are Feeling: <input type="email" name="email" placeholder="email">
+    What Level In Scale Of 1 To 10: <input type="password" name="password" placeholder="password">
+    How Long This Has Been Going On:<input type="email" name="email" placeholder="email">
+    Notes:<input type="password" name="password" placeholder="password">
+    Items To Discuss With Doctor:<input type="email" name="email" placeholder="email">
+    Questions For The Doctor:<input type="password" name="password" placeholder="password">
+    History.new(diagnosis:     patient_id)
+    create_table "comments", force: :cascade do |t|
+        t.text   "note"
+        t.text   "items_to_discuss"
+        t.text   "questions"
+        t.string "patient_id"
+      end
+    
+      create_table "histories", force: :cascade do |t|
+        t.text   "diagnoses"
+        t.text   "medications"
+        t.text   "allergies"
+        t.text   "current_treatments"
+        t.text   "surgeries"
+        t.text   "immunizations_with_dates"
+        t.string "patient_id"
+        t.string "subjective_id"
+      end
+    
+      create_table "histories_subjectives", force: :cascade do |t|
+        t.string "histories_id"
+        t.string "sbjectives_id"
+        t.string "patient_id"
+      end
+    
+      create_table "patients", force: :cascade do |t|
+        t.string "username"
+        t.string "password_digest"
+      end
+    
+      create_table "subjectives", force: :cascade do |t|
+        t.text   "location"
+        t.text   "observed_changes"
+        t.text   "sensation_changes"
+        t.string "scale_1_to_10"
+        t.text   "length_of_time"
+        t.string "history_id"
+        t.string "patient_id"
+      end
+create Subjective.new, Objetive.new, Comment.new with patient_id = Patient.id from Patient.new    

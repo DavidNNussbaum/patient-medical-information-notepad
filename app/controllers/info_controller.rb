@@ -8,11 +8,13 @@ class InfoController < ApplicationController
     end
 
     get '/info/new' do
+        @patient = Patient.find(session["user_id"])
         redirect_if_not_logged_in
         erb :notes/new
     end
 
     get '/info/:id' do
+        @patient = Patient.find(session["user_id"])
         redirect_if_not_logged_in
         @info = Info.find_by(id: params[:id])
         erb :show
@@ -22,12 +24,15 @@ class InfoController < ApplicationController
     post '/info' do
         redirect_if_not_logged_in
         redirect_error_if_not_authorized
+        # patient = Patient.username(params["username"])
+        @patient = Patient.find(session["user_id"])
         info = Info.create(params["info"])
-        redirect '/info/#{info.id}'
+        redirect '/show/#{patient}'
     end
 
   
     get '/info/:id/edit' do
+        @patient = Patient.find(session["user_id"])
         redirect_if_not_logged_in
         redirect_error_if_not_authorized
         @info = Info.find_by(id: params[:id])
@@ -35,6 +40,7 @@ class InfoController < ApplicationController
     end
 
     patch '/info/:id' do
+        @patient = Patient.find(session["user_id"])
         redirect_if_not_logged_in
         redirect_error_if_not_authorized
         info = Info.find_by(id: params[:id])
@@ -43,6 +49,7 @@ class InfoController < ApplicationController
     end
 
     delete '/info/:id' do
+        @patient = Patient.find(session["user_id"])
         redirect_if_not_logged_in
         redirect_error_if_not_authorized
         info = Info.find_by(id: params[:id])
