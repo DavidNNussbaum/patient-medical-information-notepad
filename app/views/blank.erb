@@ -1,19 +1,32 @@
-<h1>Medical Information For <%= @patient %></h1>
-<form method="post" action="/info">
+<h1>Medical Information For @patient %></h1>
+<form method="post" action="/history">
     Medical Conditions: <input type="" name="history[diagnosis]"> <% # placeholder="password" %>
     Medications: <input type="password" name="password" >
     Allergies: <input type="email" name="email" placeholder="email">
     Current Treatments: <input type="password" name="password" placeholder="password">
     Surgeries: <input type="email" name="email" placeholder="email">
     Immunizations With Dates: <input type="password" name="password" placeholder="password">
+    <input type="submit" placeholder="Submit">
+</form>
+
+<form method="post" action="/subjectives">
     Location of the Problem:<input type="email" name="email" placeholder="email">
     Any Observed Changes: <input type="password" name="password" placeholder="password">
     What You Are Feeling: <input type="email" name="email" placeholder="email">
     What Level In Scale Of 1 To 10: <input type="password" name="password" placeholder="password">
     How Long This Has Been Going On:<input type="email" name="email" placeholder="email">
+    <input type="submit" placeholder="Submit">
+</form>
+
+<form method="post" action="/commnts">
     Notes:<input type="password" name="password" placeholder="password">
     Items To Discuss With Doctor:<input type="email" name="email" placeholder="email">
     Questions For The Doctor:<input type="password" name="password" placeholder="password">
+    <input type="submit" placeholder="Submit">
+</form>
+
+
+
     History.new(diagnosis:     patient_id)
     create_table "comments", force: :cascade do |t|
         t.text   "note"
