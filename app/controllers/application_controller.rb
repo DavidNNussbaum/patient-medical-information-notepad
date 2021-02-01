@@ -22,11 +22,11 @@ class ApplicationController < Sinatra::Base
     if redirect_if_not_logged_in
     else
       @patient = Patient.find(session["patient_id"])
-      @histories = History.create(params)
+      @histories = History.create(params[:diagnoses, :medications, :allergies, :current_treatments, :surgeries, :immunizations_with_dates])
       @histories.patient_id = @patient.id
-      @subjectives = Subjective.create(params)
+      @subjectives = Subjective.create(params[:location, :observed_changes, :sensation_changes, :scale_1_to_10, :length_of_time])
       @subjectives.patient_id = @patient.id
-      @comments = Comment.create(params)
+      @comments = Comment.create(params[:note, :items_to_discuss, :questions])
       @comments.patient_id = @patient.id
       erb :show
     end
