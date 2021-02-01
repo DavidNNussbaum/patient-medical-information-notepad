@@ -6,11 +6,11 @@ class InfoController < ApplicationController
 
     post '/info' do
         @patient = Patient.find(session["patient_id"])
-        @histories = History.new(params)
+        @histories = History.create(params)
         @hist = @histories.patient_id == @patient.id
-        @subjectives = Subjective.new(params)
+        @subjectives = Subjective.create(params)
         @sub = @subjectives.patient_id == @patient.id
-        @comments = Comment.new(params)
+        @comments = Comment.create(params)
         @com = @comments.patient_id == @patient.id
         erb :show
     end
@@ -18,6 +18,7 @@ class InfoController < ApplicationController
     post '/edit' do
         erb :edit
     end
+end
     
 #     get '/info' do
 #         redirect_if_not_logged_in

@@ -1,21 +1,21 @@
-<h1>Medical Information For <%= @patient %></h1>
+<h1>Medical Information For <%= @name %></h1>
 <form method="post" action="/info">
-    Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"> <% # placeholder="password" %>
-    Medications: <input type="medications" name="histories[medications]" >
-    Allergies: <input type="allergies" name="histories[allergies]">
-    Current Treatments: <input type="current_treatments" name="histories[current_treatments]>
-    Surgeries: <input type="surgeries" name="histories[surgeries]">
-    Immunizations With Dates: <input type="immunizations_with_dates"histories[immunizations_with_dates]">
+    Medical Conditions: <input type="diagnoses" name="@hist[diagnoses]"> <% # placeholder="password" %>
+    Medications: <input type="medications" name="@hist[medications]" >
+    Allergies: <input type="allergies" name="@hist[allergies]">
+    Current Treatments: <input type="current_treatments" name="@hist[current_treatments]>
+    Surgeries: <input type="surgeries" name="@hist[surgeries]">
+    Immunizations With Dates: <input type="immunizations_with_dates"@hist[immunizations_with_dates]">
      
-    Location of the Problem:<input type="location" name="subjectives[location]">
-    Any Observed Changes: <input type="observed_changes" name="subjectives[observed_changes]">
-    What You Are Feeling: <input type="sensation_changes" name="subjectives[sensation_changes]">
-    What Level In Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]">
-    How Long This Has Been Going On:<input type="length_of_time" name="subjectives[length_of_time]">
+    Location of the Problem:<input type="location" name="@sub[location]">
+    Any Observed Changes: <input type="observed_changes" name="@sub[observed_changes]">
+    What You Are Feeling: <input type="sensation_changes" name="@sub[sensation_changes]">
+    What Level In Scale Of 1 To 10: <input type="scale_1_to_10" name="@sub[scale_1_to_10]">
+    How Long This Has Been Going On:<input type="length_of_time" name="@sub[length_of_time]">
      
-    Notes:<input type="note" name="comments[note]">
-    Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]">
-    Questions For The Doctor:<input type="questions" name="comments[questions]">
+    Notes:<input type="note" name="@com[note]">
+    Items To Discuss With Doctor:<input type="items_to_discuss" name="@com[items_to_discuss]">
+    Questions For The Doctor:<input type="questions" name="@com[questions]">
     <input type="submit" placeholder="Submit">
 </form>
 

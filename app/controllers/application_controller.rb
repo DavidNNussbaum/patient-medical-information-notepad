@@ -14,44 +14,44 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  post '/login'
+  post '/login' do
     if redirect_if_not_logged_in
     else
-      @patient = Patient.find(session["user_id"])
-      @histories = History.new(params)
+      @patient = Patient.find(session["patient_id"])
+      @histories = History.create(params)
       @histories.patient_id = @patient.id
-      @subjectives = Subjective.new(params)
+      @subjectives = Subjective.create(params)
       @subjectives.patient_id = @patient.id
-      @comments = Comment.new(params)
+      @comments = Comment.create(params)
       @comments.patient_id = @patient.id
       erb :show
     end
  end
 
-  post '/signup'
-    if current_user
-      @patient = Patient.find(session["user_id"])
-      @histories = History.new(params)
-      @histories.patient_id = @patient.id
-      @subjectives = Subjective.new(params)
-      @subjectives.patient_id = @patient.id
-      @comments = Comment.new(params)
-      @comments.patient_id = @patient.id
-      erb :show
-    else
-      @patient = Patient.new(params)
+  post '/signup' do
+    # Patient.all.each do |patient|
+    #   if patient('params') == @current_user('params')
+    patient = Patient.new(username: params["username"], password: params["password"])
+        # validate email, validate password, email not in database
+        if patient.save
+            session["patient_id"] = patient.id
+            redirect '/login'
+        else
+         @patient = Patient.create(params)
+         @name = @patient.username
       erb :blank
     end
-  end
+ end
 
   get '/error' do
     erb :error
+  end
 
   delete '/logout' do
     session.delete("patient_id")
     redirect "/login"
   end
-end
+ 
 
   helpers do
 
@@ -70,6 +70,5 @@ end
     def redirect_if_logged_in
         redirect '/show' if logged_in?
     end
-
-
+end
 end

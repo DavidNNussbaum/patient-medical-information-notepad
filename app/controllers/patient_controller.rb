@@ -9,10 +9,14 @@ class PatientController < ApplicationController
         patient = Patient.new(username: params["username"], password: params["password"])
         if patient.save
             session["patient_id"] = patient.id
-            redirect '/show'
+            redirect '/blank'
         else
             redirect '/signup'
         end
+    end
+
+    get '/blank' do
+        erb :blank
     end
 
     get '/login' do
@@ -40,5 +44,4 @@ class PatientController < ApplicationController
     get '/show' do
         erb :show
     end
-
 end
