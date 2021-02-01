@@ -14,6 +14,10 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/login' do
+    erb :blank
+  end
+
   post '/login' do
     if redirect_if_not_logged_in
     else
@@ -42,10 +46,6 @@ class ApplicationController < Sinatra::Base
       erb :blank
     end
  end
-
-  get '/error' do
-    erb :error
-  end
 
   delete '/logout' do
     session.delete("patient_id")
