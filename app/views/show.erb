@@ -1,7 +1,5 @@
-<h3><%= @note.title %></h3>
-<p><%= @note.content %></p>
-
-
+<h3><%= @patient.username %></h3>
+ 
 <% if @note.user_id == session["user_id"] %>
 <% # if @note.user == current_user %>
     <button type="button" class="btn btn-outline-primary mb-2"><a href="/notes/<%= @note.id %>/edit">Edit Note</a></button>
@@ -11,3 +9,10 @@
     </form>
     
 <% end %>
+
+GO TO /edit
+
+
+
+
+    

@@ -1,0 +1,12 @@
+<h3><%= @patient.username %></h3>
+<p>Edit Information</p>
+ 
+<% if @hist && @sub && @com %>
+ 
+    <button type="button" class="btn btn-outline-primary mb-2"><a href="/info >/edit">Edit Information</a></button>
+    <form method="POST" action="/notes/<%= @note.id %>">
+        <input type="hidden" value="DELETE" name="_method">
+        <input type="submit" value="delete">
+    </form>
+    
+<% end %>
