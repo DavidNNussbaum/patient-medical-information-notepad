@@ -30,6 +30,13 @@ class ApplicationController < Sinatra::Base
 
   post '/signup'
     if current_user
+      @patient = Patient.find(session["user_id"])
+      @histories = History.new(params)
+      @histories.patient_id = @patient.id
+      @subjectives = Subjective.new(params)
+      @subjectives.patient_id = @patient.id
+      @comments = Comment.new(params)
+      @comments.patient_id = @patient.id
       erb :show
     else
       @patient = Patient.new(params)
@@ -39,6 +46,11 @@ class ApplicationController < Sinatra::Base
 
   get '/error' do
     erb :error
+
+  delete '/logout' do
+    session.delete("patient_id")
+    redirect "/login"
+  end
 end
 
   helpers do

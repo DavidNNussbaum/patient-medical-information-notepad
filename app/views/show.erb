@@ -1,8 +1,15 @@
 <h3><%= @patient.username %></h3>
  
-<% if @note.user_id == session["user_id"] %>
-<% # if @note.user == current_user %>
-    <button type="button" class="btn btn-outline-primary mb-2"><a href="/notes/<%= @note.id %>/edit">Edit Note</a></button>
+<% if @hist && @sub && @com %>
+   
+<h1><%= @hist %></h1>
+<h1><%= @sub %></h1>
+<h1><%= @com %></h1>
+    
+    <form method="POST" action="/edit"<%= @note.id %>">
+        <input type="edit" value="edit">
+    </form>
+    
     <form method="POST" action="/notes/<%= @note.id %>">
         <input type="hidden" value="DELETE" name="_method">
         <input type="submit" value="delete">

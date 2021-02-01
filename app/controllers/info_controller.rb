@@ -1,6 +1,9 @@
 class InfoController < ApplicationController
 
-    
+    get '/edit' do
+        erb :edit
+    end
+
     post '/info' do
         @patient = Patient.find(session["patient_id"])
         @histories = History.new(params)
@@ -10,6 +13,10 @@ class InfoController < ApplicationController
         @comments = Comment.new(params)
         @com = @comments.patient_id == @patient.id
         erb :show
+    end
+
+    post '/edit' do
+        erb :edit
     end
     
 #     get '/info' do
