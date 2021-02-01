@@ -6,11 +6,17 @@
 <h1><%= @hist %></h1>
 <h1><%= @sub %></h1>
 <h1><%= @com %></h1>
+</form>
  
-    <button type="button" class="btn btn-outline-primary mb-2"><a href="/info >/edit">Edit Information</a></button>
-    <form method="POST" action="/notes/<%= @note.id %>">
+<button type="button" class="btn btn-outline-primary mb-2"><a href="/info >/edit">Edit Information</a></button>
+<form method="POST" action="/notes/<%= @note.id %>">
         <input type="hidden" value="DELETE" name="_method">
         <input type="submit" value="delete">
+</form>
+
+<form method="POST" action="/logout">
+        <input type="hidden" value="DELETE" name="_method">
+        <input type="submit" value="logout">
 </form>
     
 <% end %>
