@@ -15,41 +15,52 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :blank
+    redirect_if_logged_in
+  else
+    erb :login
+  end
   end
 
   post '/login' do
     if redirect_if_not_logged_in
     else
       @patient = Patient.find(session["patient_id"])
-      @histories = History.create(:diagnoses => params[:diagnoses], :medications => params[:medications], :allergies => params[:allergies], :current_treatments => params[:current_treatments], :surgeries => params[:surgeries], :immunizations_with_dates => params[:immunizations_with_dates])
-      @histories.patient_id = @patient.id
-      @subjectives = Subjective.create(:location => params[:location], :observed_changes => params[:observed_changes], :sensation_changes => params[:sensation_changes], :scale_1_to_10 => params[:scale_1_to_10], :length_of_time => params[:length_of_time])
-      @subjectives.patient_id = @patient.id
-      @comments = Comment.create(:note => params[:note], :items_to_discuss => params[:items_to_discuss], :questions => params[:questions])
-      @comments.patient_id = @patient.id
+        @histories = History.create(:diagnoses => params[:diagnoses], :medications => params[:medications], :allergies => params[:allergies], :current_treatments => params[:current_treatments], :surgeries => params[:surgeries], :immunizations_with_dates => params[:immunizations_with_dates])
+        @histories.patient_id = @patient.id
+        @subjectives = Subjective.create(:location => params[:location], :observed_changes => params[:observed_changes], :sensation_changes => params[:sensation_changes], :scale_1_to_10 => params[:scale_1_to_10], :length_of_time => params[:length_of_time])
+        @subjectives.patient_id = @patient.id
+        @comments = Comment.create(:note => params[:note], :items_to_discuss => params[:items_to_discuss], :questions => params[:questions])
+        @comments.patient_id = @patient.id
       erb :show
     end
  end
 
+ get '/signup' do
+  redirect_if_logged_in
+  erb :new
+end
+
   post '/signup' do
-    # Patient.all.each do |patient|
-    #   if patient('params') == @current_user('params')
     patient = Patient.new(username: params["username"], password: params["password"])
-        # validate email, validate password, email not in database
         if patient.save
             session["patient_id"] = patient.id
-            redirect '/login'
+            redirect '/blank'
         else
-         @patient = Patient.create(params)
-         @name = @patient.username
-      erb :blank
+          redirect '/show'
     end
  end
+
+  get '/show' do
+    erb :show
+  end
 
   delete '/logout' do
     session.delete("patient_id")
     redirect "/login"
+  end
+
+  get '/blank' do
+    erb :blank
   end
  
 

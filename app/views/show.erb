@@ -1,26 +1,24 @@
 <h3><%= @patient.username %></h3>
- 
-<% if @hist && @sub && @com %>
    
-<h1><%= @hist %></h1>
-<h1><%= @sub %></h1>
-<h1><%= @com %></h1>
+<h1><%= @histories %></h1>
+<h1><%= @subjectives %></h1>
+<h1><%= @comments %></h1>
     
-    <form method="POST" action="/edit"<%= @note.id %>">
-        <input type="edit" value="edit">
-    </form>
+<form method="POST" action="/edit">
+    <input type="submit" value="submit" >
+</form>
     
-    <form method="POST" action="/notes/<%= @note.id %>">
-        <input type="hidden" value="DELETE" name="_method">
-        <input type="submit" value="delete">
-    </form>
+<form method="POST" action="/delete">
+    <input type="hidden" value="DELETE" name="_method">
+    <input type="submit" value="delete">
+</form>
 
     <form method="POST" action="/logout">
     <input type="hidden" value="DELETE" name="_method">
     <input type="submit" value="logout">
 </form>
     
-<% end %>
+ 
 
  
 

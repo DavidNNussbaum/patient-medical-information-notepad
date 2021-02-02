@@ -1,8 +1,8 @@
 class InfoController < ApplicationController
 
-    get '/edit' do
-        erb :edit
-    end
+    # get '/edit' do
+    #     erb :edit
+    # end
 
     post '/info' do
         @patient = Patient.find(session["patient_id"])
@@ -16,7 +16,15 @@ class InfoController < ApplicationController
     end
 
     post '/edit' do
-        erb :edit
+        "Hello World"
+        # erb :edit
+    end
+
+    post '/delete' do
+        History.current_user.delete
+        Subjective.current_user.delete
+        Comment.current_user.delete
+        erb :blank
     end
 end
     
