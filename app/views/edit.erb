@@ -1,7 +1,9 @@
 <h3><%= @patient.username %></h3>
 <p>Edit Information</p>
 
-
+<form method="POST" action="/edit">
+    <input type="submit" value="edit">
+</form>
 
 <form method="POST" action="/logout">
         <input type="hidden" value="DELETE" name="_method">

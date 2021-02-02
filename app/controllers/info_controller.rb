@@ -1,8 +1,8 @@
 class InfoController < ApplicationController
 
-    # get '/edit' do
-    #     erb :edit
-    # end
+    get '/edit' do
+        erb :edit
+    end
 
     post '/info' do
         @patient = Patient.find(session["patient_id"])
