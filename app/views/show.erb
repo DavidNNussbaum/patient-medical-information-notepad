@@ -1,8 +1,16 @@
 <h3><%= @patient.username %></h3>
+
+<% @pull_his.each do |his| %>
+    <h1><%=    his.diagnoses  %></h1>
+    <% end %>
+    <% @pull_sub.each do |sub| %>
+        <h1><%= sub.location %></h1>
+        <% end %>
+        <% @pull_com.each do |com| %>
+            <h1><%= com.note %></h1>
+     <%   end %> 
    
-<h1><%= his %></h1>
-<h1><%= sub %></h1>
-<h1><%= com %></h1>
+ 
     
 <form method="POST" action="/edit">
 Press here to edit any information: <input type="submit" placeholder="Edit">

@@ -6,7 +6,7 @@ class InfoController < ApplicationController
 
     post '/info' do
         @patient = Patient.find(session["patient_id"])
-        histories = History.new(:diagnoses => params[:diagnoses])
+        histories = History.new(:diagnoses => params[:histories][:diagnoses])
         histories.update(:medications => params[:medications])
         histories.update(:allergies => params[:allergies])
         histories.update(:current_treatments => params[:current_treatments])
@@ -32,24 +32,10 @@ class InfoController < ApplicationController
 
     get '/show' do
         @patient = Patient.find(session["patient_id"])
-        # cor_his = History.find_by(username: @patient)
-        pull_his = History.all.find_by(patient_id: @patient.id)
-        pull_his.each do |his|
-            puts his
-        end
-        @patient = Patient.find(session["patient_id"])
-        # cor_sub = Subjective.find_by(username: @patient)
-        pull_sub = Subjective.find_by(patient_id: @patient.id)
-        pull_sub.each do |sub|
-            puts sub
-        end
-        @patient = Patient.find(session["patient_id"])
-        # cor_com = Comment.find_by(username: @patient)
-        pull_com = Comment.all.find_by(patient_id: @patient.id)
-        pull_com.each do |com|
-            puts com 
+        @pull_his = History.where(patient_id: @patient.id)
+        @pull_sub = Subjective.where(patient_id: @patient.id)
+        @pull_com = Comment.where(patient_id: @patient.id)
         erb :show
-      end
     end
 
     get '/edit' do
