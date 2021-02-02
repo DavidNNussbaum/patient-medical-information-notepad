@@ -6,14 +6,53 @@ class InfoController < ApplicationController
     # end
 
     post '/info' do
+        # @patient = Patient.find(session["patient_id"])
+        # histories = History.create(params)
+        # histories = histories.patient_id == @patient.id
+        # subjectives = Subjective.create(params)
+        # subjectives = subjectives.patient_id == @patient.id
+        # comments = Comment.create(params)
+        # comments = comments.patient_id == @patient.id
+        # erb :show
+
         @patient = Patient.find(session["patient_id"])
-        @histories = History.create(params)
-        @hist = @histories.patient_id == @patient.id
-        @subjectives = Subjective.create(params)
-        @sub = @subjectives.patient_id == @patient.id
-        @comments = Comment.create(params)
-        @com = @comments.patient_id == @patient.id
-        erb :show
+        # histories = History.create(params[:diagnoses])
+        # histories.update(params[:medications])
+        # histories.update(params[:allergies])
+        # histories.update(params[:current_treatments])
+        # histories.update(params[:surgeries])
+        # histories.update(params[:surgeries])
+        # histories.update(params[:immunizations_with_dates])
+        # histories.update(patient_id: @patient.id)
+        # subjectives = Subjective.create(params[:location])
+        # subjectives.update(params[:observed_changes])
+        # subjectives.update(params[:sensation_changes])
+        # subjectives.update(params[:scale_1_to_10])
+        # subjectives.update(params[:length_of_time])
+        # subjectives.update(patient_id: @patient.id)
+        # comments = Comment.create(params[:note])
+        # comments.update(params[:items_to_discuss])
+        # comments.update(params[:questions])
+        # comments.update(patient_id: @patient.id)
+        histories = History.create(:diagnoses => params[:diagnoses])
+        histories.update(:medications => params[:medications])
+        histories.update(:allergies => params[:allergies])
+        histories.update(:current_treatments => params[:current_treatments])
+        histories.update(:surgeries => params[:surgeries])
+        histories.update(:surgeries => params[:surgeries])
+        histories.update(:immunizations_with_dates => params[:immunizations_with_dates])
+        histories.update(:patient_id => @patient.id)
+        subjectives = Subjective.create(:location => params[:location])
+        subjectives.update(:observed_changes => params[:observed_changes])
+        subjectives.update(:sensation_changes => params[:sensation_changes])
+        subjectives.update(:scale_1_to_10 => params[:scale_1_to_10])
+        subjectives.update(:length_of_time => params[:length_of_time])
+        subjectives.update(:patient_id => @patient.id)
+        comments = Comment.create(:note => params[:note])
+        comments.update(:items_to_discuss => params[:items_to_discuss])
+        comments.update(:questions => params[:questions])
+        comments.update(:patient_id => @patient.id)
+        redirect '/show'
     end
 
     post '/edit' do

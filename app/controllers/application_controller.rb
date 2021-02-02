@@ -15,25 +15,41 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    redirect_if_logged_in
-  
-    erb :login
+    if redirect_if_logged_in
+    else
+    @patient = Patient.find(session["patient_id"])
+    erb :show
+    end
   end
   
 
   post '/login' do
-    if redirect_if_not_logged_in
+    patient = Patient.find_by_username(params["username"])
+    if patient.authenticate(params["password"])
+        session["patient_id"] = patient.id
+        redirect "/show"
     else
-      @patient = Patient.find(session["patient_id"])
-        @histories = History.create(:diagnoses => params[:diagnoses], :medications => params[:medications], :allergies => params[:allergies], :current_treatments => params[:current_treatments], :surgeries => params[:surgeries], :immunizations_with_dates => params[:immunizations_with_dates])
-        @histories.patient_id = @patient.id
-        @subjectives = Subjective.create(:location => params[:location], :observed_changes => params[:observed_changes], :sensation_changes => params[:sensation_changes], :scale_1_to_10 => params[:scale_1_to_10], :length_of_time => params[:length_of_time])
-        @subjectives.patient_id = @patient.id
-        @comments = Comment.create(:note => params[:note], :items_to_discuss => params[:items_to_discuss], :questions => params[:questions])
-        @comments.patient_id = @patient.id
-      erb :show
+        "Invalid login"
+        sleep 1
+        redirect "/login"
     end
- end
+  end
+    
+  get '/relogin' do
+      erb :login
+  end
+    # if redirect_if_not_logged_in
+    # else
+    #    @patient = Patient.find(session["patient_id"])
+    #     @histories = History.create(:diagnoses => params[:diagnoses], :medications => params[:medications], :allergies => params[:allergies], :current_treatments => params[:current_treatments], :surgeries => params[:surgeries], :immunizations_with_dates => params[:immunizations_with_dates])
+    #     @histories.patient_id = @patient.id
+    #     @subjectives = Subjective.create(:location => params[:location], :observed_changes => params[:observed_changes], :sensation_changes => params[:sensation_changes], :scale_1_to_10 => params[:scale_1_to_10], :length_of_time => params[:length_of_time])
+    #     @subjectives.patient_id = @patient.id
+    #     @comments = Comment.create(:note => params[:note], :items_to_discuss => params[:items_to_discuss], :questions => params[:questions])
+    #     @comments.patient_id = @patient.id
+    #   erb :show
+    # end
+
 
  get '/signup' do
   redirect_if_logged_in
@@ -51,13 +67,25 @@ end
  end
 
   get '/show' do
+    @patient = Patient.find(session["patient_id"])
+    @histories = History.create(:diagnoses => params[:diagnoses], :medications => params[:medications], :allergies => params[:allergies], :current_treatments => params[:current_treatments], :surgeries => params[:surgeries], :immunizations_with_dates => params[:immunizations_with_dates])
+    @histories.patient_id = @patient.id
+    @subjectives = Subjective.create(:location => params[:location], :observed_changes => params[:observed_changes], :sensation_changes => params[:sensation_changes], :scale_1_to_10 => params[:scale_1_to_10], :length_of_time => params[:length_of_time])
+    @subjectives.patient_id = @patient.id
+    @comments = Comment.create(:note => params[:note], :items_to_discuss => params[:items_to_discuss], :questions => params[:questions])
+    @comments.patient_id = @patient.id
     erb :show
   end
 
   delete '/logout' do
     session.delete("patient_id")
-    redirect "/login"
+    redirect "/relogin"
   end
+
+  get '/relogin' do
+    erb :login
+  end
+
 
   get '/blank' do
     erb :blank
@@ -81,5 +109,5 @@ end
     def redirect_if_logged_in
         redirect '/show' if logged_in?
     end
-end
+  end
 end
