@@ -42,36 +42,62 @@ class InfoController < ApplicationController
         erb :edit
     end
 
+    post '/edit_go' do
+        erb :edit
+    end
+
     post '/edit' do
         @patient = Patient.find(session["patient_id"])
-        histories = History.find_by(:patient_id => @patient.id)
-        histories.update(:diagnoses => params[:diagnoses])
-        histories.update(:medications => params[:medications])
-        histories.update(:allergies => params[:allergies])
-        histories.update(:current_treatments => params[:current_treatments])
-        histories.update(:surgeries => params[:surgeries])
-        histories.update(:surgeries => params[:surgeries])
-        histories.update(:immunizations_with_dates => params[:immunizations_with_dates])
+        histories = History.where(patient_id: @patient.id)
+        histories.update(:diagnoses => params[:histories][:diagnoses])
+        histories.update(:medications => params[:histories][:medications])
+        histories.update(:allergies => params[:histories][:allergies])
+        histories.update(:current_treatments => params[:histories][:current_treatments])
+        histories.update(:surgeries => params[:histories][:surgeries])
+        histories.update(:surgeries => params[:histories][:surgeries])
+        histories.update(:immunizations_with_dates => params[:histories][:immunizations_with_dates])
         histories.save
-        subjectives = Subjective.find_by(:patient_id => @patient.id)
-        subjectives.update(:location => params[:location])
-        subjectives.update(:observed_changes => params[:observed_changes])
-        subjectives.update(:sensation_changes => params[:sensation_changes])
-        subjectives.update(:scale_1_to_10 => params[:scale_1_to_10])
-        subjectives.update(:length_of_time => params[:length_of_time])
+        subjectives = Subjective.where(patient_id: @patient.id)
+        subjectives.update(:location => params[:subjectives][:location])
+        subjectives.update(:observed_changes => params[:subjectives][:observed_changes])
+        subjectives.update(:sensation_changes => params[:subjectives][:sensation_changes])
+        subjectives.update(:scale_1_to_10 => params[:subjectives][:scale_1_to_10])
+        subjectives.update(:length_of_time => params[:subjectives][:length_of_time])
         subjectives.save
-        comments = Comment.find_by(:patient_id => @patient.id)
-        comments.update(:note => params[:note])
-        comments.update(:items_to_discuss => params[:items_to_discuss])
-        comments.update(:questions => params[:questions])
+        comments = Comment.where(patient_id: @patient.id)
+        comments.update(:note => params[:comments][:note])
+        comments.update(:items_to_discuss => params[:comments][:items_to_discuss])
+        comments.update(:questions => params[:comments][:questions])
         comments.save
         redirect '/show'
     end
 
     post '/delete' do
-        History.current_user.delete
-        Subjective.current_user.delete
-        Comment.current_user.delete
+        @patient = Patient.find(session["patient_id"])
+        @pull_his = History.where(patient_id: @patient.id}
+             @pull_his.each do |his|  
+              his.diagnoses.delete  
+              his.medications.delete
+              his.allergies.delete  
+              his.current_treatments.delete 
+              his.surgeries.delete  
+              his.immunizations_with_dates.delete
+              end
+        @pull_sub = Subjective.where(patient_id: @patient.id)
+        @pull_sub.each do |sub| 
+             sub.location.delete
+             sub.observed_changes.delete
+             sub.sensation_changes.delete
+             sub.scale_1_to_10.delete
+             sub.length_of_time.delete
+             end 
+        @pull_com = Comment.where(patient_id: @patient.id)
+        @pull_com.each do |com| 
+             com.note.delete
+             com.items_to_discuss.delete
+             com.questions.delete
+             end 
+
         erb :blank
     end
 end
