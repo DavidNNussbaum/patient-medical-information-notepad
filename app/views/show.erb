@@ -1,17 +1,26 @@
 <h3><%= @patient.username %></h3>
 
 <% @pull_his.each do |his| %>
-    <h1><%=    his.diagnoses  %></h1>
-    <% end %>
-    <% @pull_sub.each do |sub| %>
-        <h1><%= sub.location %></h1>
-        <% end %>
-        <% @pull_com.each do |com| %>
-            <h1><%= com.note %></h1>
-     <%   end %> 
-   
- 
-    
+  <h6><%= his.diagnoses %></h6>
+  <h6><%= his.medications %></h6>
+  <h6><%= his.allergies %></h6>
+  <h6><%= his.current_treatments %></h6>
+  <h6><%= his.surgeries %></h6>
+  <h6><%= his.immunizations_with_dates %></h6>
+<% end %>
+<% @pull_sub.each do |sub| %>
+  <h6><%= sub.location %></h6>
+  <h6><%= sub.observed_changes %></h6>
+  <h6><%= sub.sensation_changes %></h6>
+  <h6><%= sub.scale_1_to_10 %></h6>
+  <h6><%= sub.length_of_time %></h6>
+<% end %>
+<% @pull_com.each do |com| %>
+    <h6><%= com.note %></h6>
+    <h6><%= com.items_to_discuss %></h6>
+    <h6><%= com.questions %></h6>
+<% end %> 
+
 <form method="POST" action="/edit">
 Press here to edit any information: <input type="submit" placeholder="Edit">
 </form>
