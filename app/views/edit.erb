@@ -1,9 +1,6 @@
 <h3><%= @patient.username %></h3>
 <p>Edit Information</p>
 
-# edit.erb
-<h1>Update Owner</h1>
-
 <h3>Edits for<%= @patient.username %></h3>
 
 <% @pull_his.each do |his| %>
@@ -26,131 +23,107 @@
     <% com.items_to_discuss %> 
     <% com.questions %> 
 <% end %> 
-[:histories][:diagnoses], 
+ 
 <form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Diagnoses:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= his.diagnoses %>><br>
-    <textarea name="note[content]"><%= his.diagnoses %></textarea><br>
+    <textarea name="histories[diagnoses]"><%= his.diagnoses %></textarea><br>
     <input type="submit">
 </form>
 
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Medications:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= his.medications %>><br>
-    <textarea name="note[content]"><%= his.medications %></textarea><br>
+    <textarea name="histories[medications]"><%= his.medications %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Allergies:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= his.allergies %>><br>
-    <textarea name="note[content]"><%= his.allergies %></textarea><br>
+    <textarea name="histories[allergies]"><%= his.allergies %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Current Treatments:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= his.current_treatments %>><br>
-    <textarea name="note[content]"><%= his.current_treatments %></textarea><br>
+    <textarea name="histories[current_treatments]"><%= his.current_treatments %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Surgeries:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= his.surgeries %>><br>
-    <textarea name="note[content]"><%= his.surgeries %></textarea><br>
+    <textarea name="histories[surgeries]"><%= his.surgeries %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Immunizations with Dates:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= his.immunizations_with_dates %>><br>
-    <textarea name="note[content]"><%= his.immunizations_with_dates %></textarea><br>
+    <textarea name="histories[immunizations_with_dates]"><%= his.immunizations_with_dates %></textarea><br>
     <input type="submit">
 </form>
-[:subjectives][:location]
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Location:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= sub.location %>><br>
-    <textarea name="note[content]"><%= sub.location %></textarea><br>
+    <textarea name="subjectives[location]"><%= sub.location %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Observed Changes:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= sub.observed_changes %>><br>
-    <textarea name="note[content]"><%= sub.observed_changes %></textarea><br>
+    <textarea name="subjectives[observed_changes]"><%= sub.observed_changes %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Sensation Changes:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= sub.sensation_changes %>><br>
-    <textarea name="note[content]"><%= sub.sensation_changes %></textarea><br>
+    <textarea name="subjectives[sensation_changes]"><%= sub.sensation_changes %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Scale on 1 to 10:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= sub.scale_1_to_10 %>><br>
-    <textarea name="note[content]"><%= sub.scale_1_to_10 %></textarea><br>
+    <textarea name="subjectives[scale_1_to_10]"><%= sub.scale_1_to_10 %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Length of Time:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= @note.title %>><br>
-    <textarea name="note[content]"><%= sub.length_of_time %></textarea><br>
+    <textarea name="subjectives[length_of_time]"><%= sub.length_of_time %></textarea><br>
     <input type="submit">
 </form>
-[:comments][:note]
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Note:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= @note.title %>><br>
-    <textarea name="note[content]"><%= com.note %></textarea><br>
+    <textarea name="comments[note]"><%= com.note %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Items to discuss:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= @note.title %>><br>
-    <textarea name="note[content]"><%= com.items_to_discuss %></textarea><br>
+    <textarea name="comments[items_to_discuss]"><%= com.items_to_discuss %></textarea><br>
     <input type="submit">
 </form>
-<form action="/notes/<%= @note.id %>" method="POST">
+<form action="/edit" method="POST">
     <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Owner's Name:</label>
+    <label>Edit the Questions:</label>
     <br>
-    <input type="text" name="note[title]" value=<%= @note.title %>><br>
-    <textarea name="note[content]"><%= com.questions %></textarea><br>
+    <textarea name="comments[questions]"><%= com.questions %></textarea><br>
     <input type="submit">
 </form>
- --------------------------------------------------------------------
-
-  <form action="/owners/<%= @owner.id %>" method="POST">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Edit the Owner's Name:</label>
-    <br>
-    <input type="text" name="owner[name]" value="<%= @owner.name %>">
-  </form> 
-
+  
 
 <form method="POST" action="/edit">
     <input type="submit" value="edit">
