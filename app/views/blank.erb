@@ -1,22 +1,22 @@
 <h1>Medical Information For <%= @name %></h1>
 <form method="post" action="/info">
-    Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"> <% # placeholder="password" %>
-    Medications: <input type="medications" name="histories[medications]" >
-    Allergies: <input type="allergies" name="histories[allergies]">
-    Current Treatments: <input type="current_treatments" name="histories[current_treatments]>
-    Surgeries: <input type="surgeries" name="histories[surgeries]">
-    Immunizations With Dates: <input type="immunizations_with_dates"histories[immunizations_with_dates]">
+    Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"><br> <% # placeholder="password" %>
+    Medications: <input type="medications" name="histories[medications]" ><br>
+    Allergies: <input type="allergies" name="histories[allergies]"><br>
+    Current Treatments: <input type="current_treatments" name="histories[current_treatments]"><br>
+    Surgeries: <input type="surgeries" name="histories[surgeries]"><br>
+    Immunizations With Dates: <input type="immunizations_with_dates name="histories[immunizations_with_dates]"><br>
      
-    Location of the Problem:<input type="location" name="subjectives[location]">
-    Any Observed Changes: <input type="observed_changes" name="subjectives[observed_changes]">
-    What You Are Feeling: <input type="sensation_changes" name="subjectives[sensation_changes]">
-    What Level In Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]">
-    How Long This Has Been Going On:<input type="length_of_time" name="subjectives[length_of_time]">
+    Location of the Problem:<input type="location" name="subjectives[location]"><br>
+    Any Observed Changes: <input type="observed_changes" name="subjectives[observed_changes]"><br>
+    What You Are Feeling: <input type="sensation_changes" name="subjectives[sensation_changes]"><br>
+    What Level In Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]"><br>
+    How Long This Has Been Going On:<input type="length_of_time" name="subjectives[length_of_time]"><br>
      
-    Notes:<input type="note" name="comments[note]">
-    Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]">
-    Questions For The Doctor:<input type="questions" name="comments[questions]">
-    <input type="submit" placeholder="Submit">
+    Notes:<input type="note" name="comments[note]"><br>
+    Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]"><br>
+    Questions For The Doctor:<input type="questions" name="comments[questions]"><br>
+    <input type="submit" placeholder="Submit"><br>
 </form>
 
 <form method="POST" action="/logout">

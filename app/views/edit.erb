@@ -4,7 +4,7 @@
 <h3>Edits for<%= @patient.username %></h3>
 <% @pull_his = History.where(patient_id: @patient.id) %>
 <% @pull_his.each do |his| %>
-   <% his.diagnoses %></h6>
+   <% his.diagnoses %>
    <% his.medications %>
    <% his.allergies %>
    <% his.current_treatments %>
