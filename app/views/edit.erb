@@ -2,7 +2,7 @@
 <p>Edit Information</p>
 
 <h3>Edits for<%= @patient.username %></h3>
-
+<% @pull_his = History.where(patient_id: @patient.id) %>
 <% @pull_his.each do |his| %>
    <% his.diagnoses %></h6>
    <% his.medications %>
@@ -11,6 +11,7 @@
    <% his.surgeries %>
    <% his.immunizations_with_dates %>
 <% end %>
+<% @pull_sub = Subjective.where(patient_id: @patient.id) %>
 <% @pull_sub.each do |sub| %>
    <% sub.location %> 
    <% sub.observed_changes %> 
@@ -18,6 +19,7 @@
    <% sub.scale_1_to_10 %> 
    <% sub.length_of_time %> 
 <% end %>
+<% @pull_com = Comment.where(patient_id: @patient.id) %>
 <% @pull_com.each do |com| %>
     <% com.note %> 
     <% com.items_to_discuss %> 

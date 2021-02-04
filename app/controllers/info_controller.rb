@@ -39,10 +39,12 @@ class InfoController < ApplicationController
     end
 
     get '/edit' do
+        @patient = Patient.find(session["patient_id"])
         erb :edit
     end
 
     post '/edit_go' do
+        @patient = Patient.find(session["patient_id"])
         erb :edit
     end
 
@@ -74,7 +76,7 @@ class InfoController < ApplicationController
 
     post '/delete' do
         @patient = Patient.find(session["patient_id"])
-        @pull_his = History.where(patient_id: @patient.id}
+        @pull_his = History.where(patient_id: @patient.id)
              @pull_his.each do |his|  
               his.diagnoses.delete  
               his.medications.delete
