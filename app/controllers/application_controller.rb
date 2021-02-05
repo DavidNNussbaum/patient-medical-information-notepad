@@ -17,6 +17,7 @@ class ApplicationController < Sinatra::Base
   get '/login' do
     if redirect_if_logged_in
     else
+    session["patient_id"] = patient.id  # --------------------
     @patient = Patient.find(session["patient_id"])
     erb :show
     end
@@ -91,26 +92,4 @@ end
   end
 end
 
-# post '/login' do
-#   patient = Patient.find_by_username(params["username"])
-#   # if patient.authenticate(params["password"])
-#   #     session["patient_id"] = patient.id
-#       redirect "/show"
-#   # else
-#   #     "Invalid login"
-#   #     sleep 1
-#   #     redirect "/login"
-#   # end
-# end
-
- # if redirect_if_not_logged_in
-    # else
-    #    @patient = Patient.find(session["patient_id"])
-    #     @histories = History.create(:diagnoses => params[:diagnoses], :medications => params[:medications], :allergies => params[:allergies], :current_treatments => params[:current_treatments], :surgeries => params[:surgeries], :immunizations_with_dates => params[:immunizations_with_dates])
-    #     @histories.patient_id = @patient.id
-    #     @subjectives = Subjective.create(:location => params[:location], :observed_changes => params[:observed_changes], :sensation_changes => params[:sensation_changes], :scale_1_to_10 => params[:scale_1_to_10], :length_of_time => params[:length_of_time])
-    #     @subjectives.patient_id = @patient.id
-    #     @comments = Comment.create(:note => params[:note], :items_to_discuss => params[:items_to_discuss], :questions => params[:questions])
-    #     @comments.patient_id = @patient.id
-    #   erb :show
-    # end
+ 

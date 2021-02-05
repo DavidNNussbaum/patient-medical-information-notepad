@@ -9,7 +9,7 @@
     Current Treatments: <input type="text" name="histories[current_treatments]" value="<%= his.current_treatments %>"><br>
     Surgeries: <input type="text" name="histories[surgeries]" value="<%= his.surgeries %>"><br>
     Immunizations With Dates: <input type="text" name="histories[immunizations_with_dates]" value="<%= his.immunizations_with_dates %>"><br>
-    <input type="submit" placeholder="Submit"><br>
+    <input type="submit" value="Edit"><br> 
 </form>
 <% end %>
 <% @subjectives.each do |sub| %>
@@ -19,14 +19,14 @@
     What You Are Feeling: <input type="text" name="subjectives[sensation_changes]" value="<%= sub.sensation_changes %>"><br>
     What Level In Scale Of 1 To 10: <input type="text" name="subjectives[scale_1_to_10]" value="<%= sub.scale_1_to_10 %>"><br>
     How Long This Has Been Going On:<input type="text" name="subjectives[length_of_time]" value="<%= sub.length_of_time %>"><br>
-    <input type="submit" placeholder="Submit"><br>
+    <input type="submit" value="Edit"><br>
     </form>
     <% end %>
     <% @comments.each do |com| %>
     <form method="post" action="/update">
     Notes:<input type="text" name="comments[note]"value="<%= com.note %>"><br>
     Items To Discuss With Doctor:<input type="text" name="comments[items_to_discuss]" value="<%= com.items_to_discuss %>"><br>
-    Questions For The Doctor:<input type="text" name="comments[questions]" value="<%= com.questions %>"><br><input type="submit" placeholder="Submit"><br>
+    Questions For The Doctor:<input type="text" name="comments[questions]" value="<%= com.questions %>"><br><input type="submit" value="Edit"><br>
     </form>
 <% end %>
 
