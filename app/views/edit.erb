@@ -1,139 +1,33 @@
 <h3><%= @patient.username %></h3>
 <p>Edit Information</p>
 
-<h3>Edits for<%= @patient.username %></h3>
-<% @pull_his = History.where(patient_id: @patient.id) %>
-<% @pull_his.each do |his| %>
-   <% his.diagnoses %>
-   <% his.medications %>
-   <% his.allergies %>
-   <% his.current_treatments %>
-   <% his.surgeries %>
-   <% his.immunizations_with_dates %>
+<% @histories.each do |his| %>
+<form method="post" action="/update">
+    Medical Conditions: <input type="text" name="histories[diagnoses]" value="<%= his.diagnoses %>"><br> 
+    Medications: <input type="text" name="histories[medications]" value="<%= his.medications %>"><br>
+    Allergies: <input type="text" name="histories[allergies]" value="<%= his.allergies %>"><br>
+    Current Treatments: <input type="text" name="histories[current_treatments]" value="<%= his.current_treatments %>"><br>
+    Surgeries: <input type="text" name="histories[surgeries]" value="<%= his.surgeries %>"><br>
+    Immunizations With Dates: <input type="text" name="histories[immunizations_with_dates]" value="<%= his.immunizations_with_dates %>"><br>
+    <input type="submit" placeholder="Submit"><br>
+</form>
 <% end %>
-<% @pull_sub = Subjective.where(patient_id: @patient.id) %>
-<% @pull_sub.each do |sub| %>
-   <% sub.location %> 
-   <% sub.observed_changes %> 
-   <% sub.sensation_changes %> 
-   <% sub.scale_1_to_10 %> 
-   <% sub.length_of_time %> 
+<% @subjectives.each do |sub| %>
+<form method="post" action="/update">
+    Location of the Problem:<input type="text" name="subjectives[location]" value="<%= sub.location %>" ><br>
+    Any Observed Changes: <input type="text" name="subjectives[observed_changes]" value="<%= sub.observed_changes %>"><br>
+    What You Are Feeling: <input type="text" name="subjectives[sensation_changes]" value="<%= sub.sensation_changes %>"><br>
+    What Level In Scale Of 1 To 10: <input type="text" name="subjectives[scale_1_to_10]" value="<%= sub.scale_1_to_10 %>"><br>
+    How Long This Has Been Going On:<input type="text" name="subjectives[length_of_time]" value="<%= sub.length_of_time %>"><br>
+    <input type="submit" placeholder="Submit"><br>
+    </form>
+    <% end %>
+    <% @comments.each do |com| %>
+    <form method="post" action="/update">
+    Notes:<input type="text" name="comments[note]"value="<%= com.note %>"><br>
+    Items To Discuss With Doctor:<input type="text" name="comments[items_to_discuss]" value="<%= com.items_to_discuss %>"><br>
+    Questions For The Doctor:<input type="text" name="comments[questions]" value="<%= com.questions %>"><br><input type="submit" placeholder="Submit"><br>
+    </form>
 <% end %>
-<% @pull_com = Comment.where(patient_id: @patient.id) %>
-<% @pull_com.each do |com| %>
-    <% com.note %> 
-    <% com.items_to_discuss %> 
-    <% com.questions %> 
-<% end %> 
- 
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Diagnoses:</label>
-    <br>
-    <textarea name="histories[diagnoses]"><%= his.diagnoses %></textarea><br>
-    <input type="submit">
-</form>
 
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Medications:</label>
-    <br>
-    <textarea name="histories[medications]"><%= his.medications %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Allergies:</label>
-    <br>
-    <textarea name="histories[allergies]"><%= his.allergies %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Current Treatments:</label>
-    <br>
-    <textarea name="histories[current_treatments]"><%= his.current_treatments %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Surgeries:</label>
-    <br>
-    <textarea name="histories[surgeries]"><%= his.surgeries %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Immunizations with Dates:</label>
-    <br>
-    <textarea name="histories[immunizations_with_dates]"><%= his.immunizations_with_dates %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Location:</label>
-    <br>
-    <textarea name="subjectives[location]"><%= sub.location %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Observed Changes:</label>
-    <br>
-    <textarea name="subjectives[observed_changes]"><%= sub.observed_changes %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Sensation Changes:</label>
-    <br>
-    <textarea name="subjectives[sensation_changes]"><%= sub.sensation_changes %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Scale on 1 to 10:</label>
-    <br>
-    <textarea name="subjectives[scale_1_to_10]"><%= sub.scale_1_to_10 %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Length of Time:</label>
-    <br>
-    <textarea name="subjectives[length_of_time]"><%= sub.length_of_time %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Note:</label>
-    <br>
-    <textarea name="comments[note]"><%= com.note %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Items to discuss:</label>
-    <br>
-    <textarea name="comments[items_to_discuss]"><%= com.items_to_discuss %></textarea><br>
-    <input type="submit">
-</form>
-<form action="/edit" method="POST">
-    <input type="hidden" value="PATCH" name="_method">
-    <label>Edit the Questions:</label>
-    <br>
-    <textarea name="comments[questions]"><%= com.questions %></textarea><br>
-    <input type="submit">
-</form>
-  
 
-<form method="POST" action="/edit">
-    <input type="submit" value="edit">
-</form>
-
-<form method="POST" action="/logout">
-        <input type="hidden" value="DELETE" name="_method">
-        <input type="submit" value="logout">
-</form>
-    
- 
