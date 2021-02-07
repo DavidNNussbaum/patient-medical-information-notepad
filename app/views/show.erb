@@ -15,11 +15,6 @@
   <h6><%= sub.scale_1_to_10 %></h6>
   <h6><%= sub.length_of_time %></h6>
 <% end %>
-<% @pull_com.each do |com| %>
-    <h6><%= com.note %></h6>
-    <h6><%= com.items_to_discuss %></h6>
-    <h6><%= com.questions %></h6>
-<% end %> 
 
 <form method="POST" action="/edit">
 <h6>Press here to edit any information: <input type="submit" value="Edit"></h6>
@@ -42,6 +37,10 @@
     <input type="hidden" value="DELETE" name="_method">
     <input type="submit" value="logout">
 </form>
+
+
+
+
     
  
 

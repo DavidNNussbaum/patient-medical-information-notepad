@@ -37,9 +37,9 @@ class ApplicationController < Sinatra::Base
     
   end
     
-  # get '/relogin' do
-  #     erb :login
-  # end
+  get '/relogin' do
+      erb :login
+  end
     
 #  get '/signup' do
 #   redirect_if_logged_in

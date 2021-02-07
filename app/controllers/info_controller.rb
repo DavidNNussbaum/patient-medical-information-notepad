@@ -26,24 +26,24 @@ class InfoController < ApplicationController
         subjectives.update(:length_of_time => params[:subjectives][:length_of_time])
         subjectives.update(:patient_id => @patient.id)
         subjectives.save
-        comments = Comment.create(:note => params[:comments][:note])
-        comments.update(:items_to_discuss => params[:comments][:items_to_discuss])
-        comments.update(:questions => params[:comments][:questions])
-        comments.update(:patient_id => @patient.id)
-        comments.save
+        # comments = Comment.create(:note => params[:comments][:note])
+        # comments.update(:items_to_discuss => params[:comments][:items_to_discuss])
+        # comments.update(:questions => params[:comments][:questions])
+        # comments.update(:patient_id => @patient.id)
+        # comments.save
         redirect '/show'
     end
 
-    # get '/show' do
-    #     # session["patient_id"] = Patient.find_by(id: ) #------------------
-    #     # redirect_if_logged_in   #----------------------------
-    #     # session["patient_id"] = patient.id  # ---------------------------
-    #     @patient = Patient.find(session["patient_id"])
-    #     @pull_his = History.where(patient_id: @patient.id)
-    #     @pull_sub = Subjective.where(patient_id: @patient.id)
-    #     # @pull_com = Comment.where(patient_id: @patient.id)
-    #     erb :show
-    # end
+    get '/show' do
+        # session["patient_id"] = Patient.find_by(id: ) #------------------
+        # redirect_if_logged_in   #----------------------------
+        # session["patient_id"] = patient.id  # ---------------------------
+        @patient = Patient.find(session["patient_id"])
+        @pull_his = History.where(patient_id: @patient.id)
+        @pull_sub = Subjective.where(patient_id: @patient.id)
+        # @pull_com = Comment.where(patient_id: @patient.id)
+        erb :show
+    end
 
     # get '/edit' do
     #     @patient = Patient.find(session["patient_id"])
@@ -76,14 +76,23 @@ class InfoController < ApplicationController
     #     erb :show
     # end
 
-    # post '/edit' do
-    #     @patient = Patient.find(session["patient_id"])
-    #     @histories = History.where(patient_id: @patient.id)
-    #     @subjectives = Subjective.where(patient_id: @patient.id)
-    #     @comments = Comment.where(patient_id: @patient.id)
+    post '/show' do
+        @patient = Patient.find(session["patient_id"])
+        @pull_his = History.where(patient_id: @patient.id)
+        @pull_sub = Subjective.where(patient_id: @patient.id)
+        @pull_com = Comment.where(patient_id: @patient.id)
+
+        erb :show
+    end
+
+    post '/edit' do
+        @patient = Patient.find(session["patient_id"])
+        @histories = History.where(patient_id: @patient.id)
+        @subjectives = Subjective.where(patient_id: @patient.id)
+        @comments = Comment.where(patient_id: @patient.id)
          
-    #     erb :edit
-    # end
+        erb :edit
+    end
 
      patch '/show' do
         @patient = Patient.find(session["patient_id"])
