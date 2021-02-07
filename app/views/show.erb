@@ -24,7 +24,15 @@
 <form method="POST" action="/edit">
 <h6>Press here to edit any information: <input type="submit" value="Edit"></h6>
 </form>
-    
+
+<form method="POST" action="/comments/blank">
+<h6>To create new notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Press"></h6>
+</form>
+
+<form method="POST" action="/comments/show">
+<h6>To see your list of previously created notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Press"></h6>
+</form>
+
 <form method="POST" action="/delete">
     <input type="hidden" value="DELETE" name="_method">
     <input type="submit" value="delete">
