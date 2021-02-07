@@ -11,31 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210207015740) do
+ActiveRecord::Schema.define(version: 20210207210841) do
 
   create_table "comments", force: :cascade do |t|
-    t.text   "note"
-    t.text   "items_to_discuss"
-    t.text   "questions"
-    t.string "patient_id"
-    t.string "identifier"
+    t.string  "identifier"
+    t.text    "note"
+    t.text    "items_to_discuss"
+    t.text    "questions"
+    t.integer "patient_id_id"
   end
 
   create_table "histories", force: :cascade do |t|
-    t.text   "diagnoses"
-    t.text   "medications"
-    t.text   "allergies"
-    t.text   "current_treatments"
-    t.text   "surgeries"
-    t.text   "immunizations_with_dates"
-    t.string "patient_id"
-    t.string "subjective_id"
+    t.text    "diagnoses"
+    t.text    "medications"
+    t.text    "allergies"
+    t.text    "current_treatments"
+    t.text    "surgeries"
+    t.text    "immunizations_with_dates"
+    t.integer "patient_id_id"
+    t.integer "subjective_id_id"
   end
 
   create_table "histories_subjectives", force: :cascade do |t|
-    t.string "histories_id"
-    t.string "sbjectives_id"
-    t.string "patient_id"
+    t.integer "histories_id_id"
+    t.integer "sbjectives_id_id"
+    t.integer "patient_id_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 20210207015740) do
   end
 
   create_table "subjectives", force: :cascade do |t|
-    t.text   "location"
-    t.text   "observed_changes"
-    t.text   "sensation_changes"
-    t.string "scale_1_to_10"
-    t.text   "length_of_time"
-    t.string "history_id"
-    t.string "patient_id"
+    t.text    "location"
+    t.text    "observed_changes"
+    t.text    "sensation_changes"
+    t.string  "scale_1_to_10"
+    t.text    "length_of_time"
+    t.integer "history_id_id"
+    t.integer "patient_id_id"
   end
 
 end
