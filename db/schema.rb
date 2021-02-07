@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210131014316) do
+ActiveRecord::Schema.define(version: 20210207015740) do
 
   create_table "comments", force: :cascade do |t|
     t.text   "note"
     t.text   "items_to_discuss"
     t.text   "questions"
     t.string "patient_id"
+    t.string "identifier"
   end
 
   create_table "histories", force: :cascade do |t|
