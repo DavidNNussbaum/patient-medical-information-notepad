@@ -12,11 +12,14 @@
     What You Are Feeling: <input type="sensation_changes" name="subjectives[sensation_changes]"><br>
     What Level In Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]"><br>
     How Long This Has Been Going On:<input type="length_of_time" name="subjectives[length_of_time]"><br>
-     
-    Notes:<input type="note" name="comments[note]"><br>
-    Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]"><br>
-    Questions For The Doctor:<input type="questions" name="comments[questions]"><br>
-    <input type="submit" input type="Edit"><br>
+    <input type="submit" value="Submit">
+
+    <% if false %>
+    # Notes:<input type="note" name="comments[note]"><br>
+    # Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]"><br>
+    # Questions For The Doctor:<input type="questions" name="comments[questions]"><br>
+    # <input type="submit" input type="Edit"><br>
+    <% end %>
 </form>
 
 <form method="POST" action="/logout">

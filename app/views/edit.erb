@@ -2,7 +2,8 @@
 <p>Edit Information</p>
 
 <% @histories.each do |his| %>
-<form method="post" action="/update">
+<form method="post" action="/show">
+<input type="hidden" value="PATCH" name="_method">
     Medical Conditions: <input type="text" name="histories[diagnoses]" value="<%= his.diagnoses %>"><br> 
     Medications: <input type="text" name="histories[medications]" value="<%= his.medications %>"><br>
     Allergies: <input type="text" name="histories[allergies]" value="<%= his.allergies %>"><br>
@@ -13,7 +14,8 @@
 </form>
 <% end %>
 <% @subjectives.each do |sub| %>
-<form method="post" action="/update">
+    <form method="post" action="/show">
+    <input type="hidden" value="PATCH" name="_method">
     Location of the Problem:<input type="text" name="subjectives[location]" value="<%= sub.location %>" ><br>
     Any Observed Changes: <input type="text" name="subjectives[observed_changes]" value="<%= sub.observed_changes %>"><br>
     What You Are Feeling: <input type="text" name="subjectives[sensation_changes]" value="<%= sub.sensation_changes %>"><br>
@@ -22,11 +24,14 @@
     <input type="submit" value="Edit"><br>
     </form>
     <% end %>
-    <% @comments.each do |com| %>
-    <form method="post" action="/update">
-    Notes:<input type="text" name="comments[note]"value="<%= com.note %>"><br>
-    Items To Discuss With Doctor:<input type="text" name="comments[items_to_discuss]" value="<%= com.items_to_discuss %>"><br>
-    Questions For The Doctor:<input type="text" name="comments[questions]" value="<%= com.questions %>"><br><input type="submit" value="Edit"><br>
+    <% if false %>
+    # <% @comments.each do |com| %>
+    # <form method="post" action="/update">
+    # Notes:<input type="text" name="comments[note]"value="<%= com.note %>"><br>
+    # Items To Discuss With Doctor:<input type="text" name="comments[items_to_discuss]" value="<%= com.items_to_discuss %>"><br>
+    # Questions For The Doctor:<input type="text" name="comments[questions]" value="<%= com.questions %>"><br><input type="submit" value="Edit"><br>
+    # <input type="submit" value="Edit"><br>
+    <% end %>
     </form>
 <% end %>
 

@@ -14,14 +14,14 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/login' do
-    if redirect_if_logged_in
-    else
-    session["patient_id"] = patient.id  # --------------------
-    @patient = Patient.find(session["patient_id"])
-    erb :show
-    end
-  end
+  # get '/login' do
+  #   if redirect_if_logged_in
+  #   else
+  #   session["patient_id"] = patient.id  # --------------------
+  #   @patient = Patient.find(session["patient_id"])
+  #   erb :show
+  #   end
+  # end
   
 
   post '/login' do
@@ -37,14 +37,14 @@ class ApplicationController < Sinatra::Base
     
   end
     
-  get '/relogin' do
-      erb :login
-  end
+  # get '/relogin' do
+  #     erb :login
+  # end
     
- get '/signup' do
-  redirect_if_logged_in
-  redirect '/info'
-end
+#  get '/signup' do
+#   redirect_if_logged_in
+#   redirect '/info'
+# end
 
   post '/signup' do
     patient = Patient.new(username: params["username"], password: params["password"])
@@ -60,10 +60,6 @@ end
   delete '/logout' do
     session.delete("patient_id")
     redirect "/relogin"
-  end
-
-  get '/relogin' do
-    erb :login
   end
 
 
