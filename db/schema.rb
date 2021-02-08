@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210207210841) do
+ActiveRecord::Schema.define(version: 20210131014316) do
 
   create_table "comments", force: :cascade do |t|
-    t.string  "identifier"
+    t.text    "identifier"
     t.text    "note"
     t.text    "items_to_discuss"
     t.text    "questions"
-    t.integer "patient_id_id"
+    t.integer "patient_id"
   end
 
   create_table "histories", force: :cascade do |t|
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(version: 20210207210841) do
     t.text    "current_treatments"
     t.text    "surgeries"
     t.text    "immunizations_with_dates"
-    t.integer "patient_id_id"
-    t.integer "subjective_id_id"
+    t.integer "patient_id"
+    t.integer "subjective_id"
   end
 
   create_table "histories_subjectives", force: :cascade do |t|
-    t.integer "histories_id_id"
-    t.integer "sbjectives_id_id"
-    t.integer "patient_id_id"
+    t.integer "history_id"
+    t.integer "subjective_id"
+    t.integer "patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20210207210841) do
     t.text    "sensation_changes"
     t.string  "scale_1_to_10"
     t.text    "length_of_time"
-    t.integer "history_id_id"
-    t.integer "patient_id_id"
+    t.integer "history_id"
+    t.integer "patient_id"
   end
 
 end

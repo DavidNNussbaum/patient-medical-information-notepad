@@ -14,26 +14,14 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  # get '/login' do
-  #   if redirect_if_logged_in
-  #   else
-  #   session["patient_id"] = patient.id  # --------------------
-  #   @patient = Patient.find(session["patient_id"])
-  #   erb :show
-  #   end
-  # end
-  
-
   post '/login' do
     patient = Patient.find_by_username(params["username"])
-     # if patient.authenticate(params["password"])
-     #     session["patient_id"] = patient.id
-        redirect "/show"
-        # else
-        #     "Invalid login"
-        #     sleep 1
-        #     redirect "/login"
-        # end
+     if patient.authenticate(params["password"])
+         session["patient_id"] = patient.id
+        redirect '/show'
+        else
+            redirect '/login'
+        end
     
   end
     
@@ -41,16 +29,13 @@ class ApplicationController < Sinatra::Base
       erb :login
   end
     
-#  get '/signup' do
-#   redirect_if_logged_in
-#   redirect '/info'
-# end
+ 
 
   post '/signup' do
     patient = Patient.new(username: params["username"], password: params["password"])
         if patient.save
             session["patient_id"] = patient.id
-            redirect '/blank'
+            redirect '/new'
         else
           redirect '/show'
     end
@@ -63,8 +48,8 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  get '/blank' do
-    erb :blank
+  get '/new' do
+    erb :new
   end
  
 

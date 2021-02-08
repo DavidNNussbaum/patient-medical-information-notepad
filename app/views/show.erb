@@ -1,30 +1,30 @@
 <h3><%= @patient.username %></h3>
 
-<% @pull_his.each do |his| %>
-  <h6><%= his.diagnoses %></h6>
-  <h6><%= his.medications %></h6>
-  <h6><%= his.allergies %></h6>
-  <h6><%= his.current_treatments %></h6>
-  <h6><%= his.surgeries %></h6>
-  <h6><%= his.immunizations_with_dates %></h6>
+<% @histories.each do |history| %>
+  <h6><%= history.diagnoses %></h6>
+  <h6><%= history.medications %></h6>
+  <h6><%= history.allergies %></h6>
+  <h6><%= history.current_treatments %></h6>
+  <h6><%= history.surgeries %></h6>
+  <h6><%= history.immunizations_with_dates %></h6>
 <% end %>
-<% @pull_sub.each do |sub| %>
-  <h6><%= sub.location %></h6>
-  <h6><%= sub.observed_changes %></h6>
-  <h6><%= sub.sensation_changes %></h6>
-  <h6><%= sub.scale_1_to_10 %></h6>
-  <h6><%= sub.length_of_time %></h6>
+<% @subjectives.each do |subjective| %>
+  <h6><%= subjective.location %></h6>
+  <h6><%= subjective.observed_changes %></h6>
+  <h6><%= subjective.sensation_changes %></h6>
+  <h6><%= subjective.scale_1_to_10 %></h6>
+  <h6><%= subjective.length_of_time %></h6>
 <% end %>
 
 <form method="POST" action="/edit">
 <h6>Press here to edit any information: <input type="submit" value="Edit"></h6>
 </form>
 
-<form method="POST" action="/comments/blank">
+<form method="GET" action="/patient/<%= @patient.id %>/comments/new">
 <h6>To create new notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Press"></h6>
 </form>
 
-<form method="POST" action="/comments/show">
+<form method="GET" action="/patient/<%= @patient.id %>/comments">
 <h6>To see your list of previously created notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Press"></h6>
 </form>
 
