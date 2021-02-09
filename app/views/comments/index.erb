@@ -1,0 +1,14 @@
+<h1>List of Identifiers For <%= @patient.username %>:</h1><br><br>
+<h2>Choose The Identifier For The Note, Items, Or Questions That You Want 
+To Edit or Delete and Click on It.</h2>
+
+<ul>
+    <%  @comments.each do |comment| %>
+        <li><a href="/patient/<%= comment.patient_id %>/comment/<%= comment.id %>"><%= comment.identifier %></a></li>
+    <% end %><br><br>
+</ul>
+
+
+<form method="POST" action="/show">
+To return to the medical information page press here: <input type="submit" value="Return To Medical Inforation"></h6>
+</form>
