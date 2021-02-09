@@ -1,6 +1,9 @@
-<h3><%= @patient.username %></h3>
-<p>Edit Information</p>
+<h1>Edit Medical Information For <%= @patient.username %></h1>
+Please Note That Each Section Is Separate. If You Are Editing Both Sections, 
+Change The First Section, Press On the Edit Button 
+And Then Return To This Page To Change The Second Section.
 
+<h3>General History:</h3>
 <% @histories.each do |his| %>
 <form method="post" action="/show">
 <input type="hidden" value="PATCH" name="_method">
@@ -10,18 +13,21 @@
     Current Treatments: <input type="text" name="histories[current_treatments]" value="<%= his.current_treatments %>"><br>
     Surgeries: <input type="text" name="histories[surgeries]" value="<%= his.surgeries %>"><br>
     Immunizations With Dates: <input type="text" name="histories[immunizations_with_dates]" value="<%= his.immunizations_with_dates %>"><br>
-    <input type="submit" value="Edit"><br> 
+    To Edit The Information In This Section Press Here:<input type="submit" value="Edit"><br><br>
 </form>
 <% end %>
+
+################################################################################################
+<h3>The Current Problem:</h3>
 <% @subjectives.each do |sub| %>
     <form method="post" action="/show">
     <input type="hidden" value="PATCH" name="_method">
     Location of the Problem:<input type="text" name="subjectives[location]" value="<%= sub.location %>" ><br>
     Any Observed Changes: <input type="text" name="subjectives[observed_changes]" value="<%= sub.observed_changes %>"><br>
     What You Are Feeling: <input type="text" name="subjectives[sensation_changes]" value="<%= sub.sensation_changes %>"><br>
-    What Level In Scale Of 1 To 10: <input type="text" name="subjectives[scale_1_to_10]" value="<%= sub.scale_1_to_10 %>"><br>
+    What Is The Level Of Discomfort On A Scale Of 1 To 10: <input type="text" name="subjectives[scale_1_to_10]" value="<%= sub.scale_1_to_10 %>"><br>
     How Long This Has Been Going On:<input type="text" name="subjectives[length_of_time]" value="<%= sub.length_of_time %>"><br>
-    <input type="submit" value="Edit"><br>
+    To Edit The Information In This Section Press Here:<input type="submit" value="Edit"><br>
     </form>
 <% end %>
 

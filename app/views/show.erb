@@ -1,41 +1,46 @@
-<h3><%= @patient.username %></h3>
+<h1>Medical Information For <%= @patient.username %></h1>
 
+<h3>General History:</h3>
 <% @histories.each do |history| %>
-  <h6><%= history.diagnoses %></h6>
-  <h6><%= history.medications %></h6>
-  <h6><%= history.allergies %></h6>
-  <h6><%= history.current_treatments %></h6>
-  <h6><%= history.surgeries %></h6>
-  <h6><%= history.immunizations_with_dates %></h6>
+  Medical Conditions: <%= history.diagnoses %><br><br>
+  Medications: <%= history.medications %><br><br>
+  Allergies: <%= history.allergies %><br><br>
+  Current Treatments: <%= history.current_treatments %><br><br>
+  Surgeries: <%= history.surgeries %><br><br>
+  Immunizations With Dates: <%= history.immunizations_with_dates %><br><br>
 <% end %>
+<h3>The Current Problem:</h3>
 <% @subjectives.each do |subjective| %>
-  <h6><%= subjective.location %></h6>
-  <h6><%= subjective.observed_changes %></h6>
-  <h6><%= subjective.sensation_changes %></h6>
-  <h6><%= subjective.scale_1_to_10 %></h6>
-  <h6><%= subjective.length_of_time %></h6>
+  Location of the Problem: <%= subjective.location %><br><br>
+  Any Observed Changes: <%= subjective.observed_changes %><br><br>
+  What You Are Feeling: <%= subjective.sensation_changes %><br><br>
+  What Is The Level Of Discomfort On A Scale Of 1 To 10: <%= subjective.scale_1_to_10 %><br><br>
+  How Long This Has Been Going On: <%= subjective.length_of_time %><br><br>
 <% end %>
+ 
 
 <form method="POST" action="/edit">
-<h6>Press here to edit any information: <input type="submit" value="Edit"></h6>
+<h3>Press here to edit any of the information above: <input type="submit" value="Edit"></h3><br><br>
 </form>
 
+############################################################################################################
+
 <form method="GET" action="/patient/<%= @patient.id %>/comments/new">
-<h6>To create new notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Press"></h6>
+To create new notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Create Notes, Items, and Questions"><br><br>
 </form>
 
 <form method="GET" action="/patient/<%= @patient.id %>/comments">
-<h6>To see your list of previously created notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Press"></h6>
+To see your list of previously created notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="View Notes, Items, and Questions"><br><br>
 </form>
 
 <form method="POST" action="/delete">
     <input type="hidden" value="DELETE" name="_method">
-    <input type="submit" value="delete">
+    To Delete All Of Your Information Press Here: <input type="submit" value="Delete"><br><br>
 </form>
 
     <form method="POST" action="/logout">
     <input type="hidden" value="DELETE" name="_method">
-    <input type="submit" value="logout">
+    To Logout Press Here: <input type="submit" value="Logout">
 </form>
 
 

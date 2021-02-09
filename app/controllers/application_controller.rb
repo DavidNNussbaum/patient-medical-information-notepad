@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @patient = Patient.find(session["patient_id"])
     erb :index
   end
 
@@ -49,13 +50,14 @@ class ApplicationController < Sinatra::Base
 
 
   get '/new' do
+    @patient = Patient.find(session["patient_id"])
     erb :new
   end
  
 
   helpers do
 
-    def current_user # memoization
+    def current_user  
         @current_user ||= Patient.find_by_id(session["patient_id"]) if session["patient_id"]
     end
 

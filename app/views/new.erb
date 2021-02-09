@@ -1,28 +1,24 @@
-<h1>Medical Information For <%= @name %></h1>
+<h1>Medical Information For <%= @patient.username %></h1>
 <form method="post" action="/info">
-    Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"><br> <% # placeholder="password" %>
+    <h3>General History:</h3>
+    Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"><br> 
     Medications: <input type="medications" name="histories[medications]" ><br>
     Allergies: <input type="allergies" name="histories[allergies]"><br>
     Current Treatments: <input type="current_treatments" name="histories[current_treatments]"><br>
     Surgeries: <input type="surgeries" name="histories[surgeries]"><br>
     Immunizations With Dates: <input type="immunizations_with_dates" name="histories[immunizations_with_dates]"><br>
      
+    <h3>The Current Problem:</h3>
     Location of the Problem:<input type="location" name="subjectives[location]"><br>
     Any Observed Changes: <input type="observed_changes" name="subjectives[observed_changes]"><br>
     What You Are Feeling: <input type="sensation_changes" name="subjectives[sensation_changes]"><br>
-    What Level In Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]"><br>
+    What Is The Level Of Discomfort On A Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]"><br>
     How Long This Has Been Going On:<input type="length_of_time" name="subjectives[length_of_time]"><br>
-    <input type="submit" value="Submit">
-
-    <% if false %>
-    # Notes:<input type="note" name="comments[note]"><br>
-    # Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]"><br>
-    # Questions For The Doctor:<input type="questions" name="comments[questions]"><br>
-    # <input type="submit" input type="Edit"><br>
-    <% end %>
+    <h3>Press Here To Enter The Above Information: <input type="submit" value="Save Information"></h3>
 </form>
-
+   
+     <h3>Press Below To Logout Without Saving The Information:</h3>
 <form method="POST" action="/logout">
         <input type="hidden" value="DELETE" name="_method">
-        <input type="submit" value="logout">
+        <input type="submit" value="Logout">
 </form>
