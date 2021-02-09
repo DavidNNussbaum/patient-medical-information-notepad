@@ -1,0 +1,15 @@
+<h2>Here is Where You Can Create New Note, Items, And Questions For <%= @patient.username %></h2>
+Please Note When You Have Several Different Notes, Items, And Questions
+There Will Be A List Of Identifiers From Which You Can Pick What You Want To See Or Modify.
+The Identifier Can Be The Date You Created It Or Anything That Will Allow You To Identify This Note, 
+Items, and Questions.<br><br>   
+<form action="/patient/<%= @patient.id %>/comments" method="POST">
+    Identifier:<input type="identifier" name="comments[identifier]"><br>
+    Note:<input type="note" name="comments[note]"><br>
+    Items To Discuss With Doctor:<input type="items_to_discuss" name="comments[items_to_discuss]"><br>
+    Questions For The Doctor:<input type="questions" name="comments[questions]"><br><br>
+    <input type="submit" value="Save Information" ><br>
+</form>
+ 
+
+ 
