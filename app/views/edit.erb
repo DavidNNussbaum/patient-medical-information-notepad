@@ -1,9 +1,11 @@
-<h1>Edit Medical Information For <%= @patient.username %></h1>
+<div class="p-3 mb-2 bg-warning text-dark"> 
+<h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
+<h1 class='text-center'><span class="border border-3">Edit Medical Information For <%= @patient.username %></span></h1>
 Please Note That Each Section Is Separate. If You Are Editing Both Sections, 
 Change The First Section, Press On the Edit Button 
 And Then Return To This Page To Change The Second Section.
 
-<h3>General History:</h3>
+<h3><u>General History:</u></h3>
 <% @histories.each do |his| %>
 <form method="post" action="/show">
 <input type="hidden" value="PATCH" name="_method">
@@ -12,13 +14,14 @@ And Then Return To This Page To Change The Second Section.
     Allergies: <input type="text" name="histories[allergies]" value="<%= his.allergies %>"><br>
     Current Treatments: <input type="text" name="histories[current_treatments]" value="<%= his.current_treatments %>"><br>
     Surgeries: <input type="text" name="histories[surgeries]" value="<%= his.surgeries %>"><br>
-    Immunizations With Dates: <input type="text" name="histories[immunizations_with_dates]" value="<%= his.immunizations_with_dates %>"><br>
-    To Edit The Information In This Section Press Here:<input type="submit" value="Edit"><br><br>
+    Immunizations With Dates: <input type="text" name="histories[immunizations_with_dates]" value="<%= his.immunizations_with_dates %>"><br><br>
+    <u>To Edit The Information In This Section Press Here:</u><input type="submit" value="Edit"><br><br>
 </form>
 <% end %>
 
-################################################################################################
-<h3>The Current Problem:</h3>
+<h6 class='text-center'><$= '#' * 80 %></h6>
+ 
+<h3><u>The Current Problem:</u></h3>
 <% @subjectives.each do |sub| %>
     <form method="post" action="/show">
     <input type="hidden" value="PATCH" name="_method">
@@ -26,9 +29,10 @@ And Then Return To This Page To Change The Second Section.
     Any Observed Changes: <input type="text" name="subjectives[observed_changes]" value="<%= sub.observed_changes %>"><br>
     What You Are Feeling: <input type="text" name="subjectives[sensation_changes]" value="<%= sub.sensation_changes %>"><br>
     What Is The Level Of Discomfort On A Scale Of 1 To 10: <input type="text" name="subjectives[scale_1_to_10]" value="<%= sub.scale_1_to_10 %>"><br>
-    How Long This Has Been Going On:<input type="text" name="subjectives[length_of_time]" value="<%= sub.length_of_time %>"><br>
-    To Edit The Information In This Section Press Here:<input type="submit" value="Edit"><br>
+    How Long This Has Been Going On:<input type="text" name="subjectives[length_of_time]" value="<%= sub.length_of_time %>"><br><br>
+    <u>To Edit The Information In This Section Press Here:</u><input type="submit" value="Edit"><br>
     </form>
 <% end %>
+</div>
 
 

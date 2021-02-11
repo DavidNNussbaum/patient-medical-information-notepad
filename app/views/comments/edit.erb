@@ -1,14 +1,17 @@
-<h2>Edit Comment</h2>
-
- 
+<div class="p-3 mb-2 bg-light text-dark">
+<h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
+<h1 class='text-center'><span class="border border-3">Use This Page To Edit</span></h1>
+<h1 class='text-center'><span class="border border-3">Your Note, Items, And Questions</span></h1>
     <form action="/patient/<%= @comment.patient_id %>/comment/<%= @comment.id %>" method="POST">
     <input type="hidden" value="PATCH" name="_method">
     Identifier:<input type="text" name="comments[identifier]"value="<%= @comment.identifier %>"><br>
     Note:<br><textarea name="comments[note]"><%= @comment.note %></textarea><br>
     Items To Discuss With Doctor:<br><textarea name="comments[items_to_discuss]"><%= @comment.items_to_discuss %></textarea><br>
-    Questions For The Doctor:<br><textarea name="comments[questions]"><%= @comment.questions %></textarea><br>
-    <input type="submit" value="Edit"><br>
+    Questions For The Doctor:<br><textarea name="comments[questions]"><%= @comment.questions %></textarea><br><br>
+    
+    <u>Press Here To Edit Your Input:</u> <input type="submit" value="Edit"><br>
     </form>
+    </div>
  
 
 

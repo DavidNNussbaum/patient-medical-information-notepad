@@ -1,6 +1,7 @@
-<h1>Medical Information For <%= @patient.username %></h1>
-
-<h3>General History:</h3>
+<div class="p-3 mb-2 bg-secondary text-white"> 
+<h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
+<h1 class='text-center'><span class="border border-3">Medical Information For <%= @patient.username %></span></h1>
+<h3><u>General History:</u></h3>
 <% @histories.each do |history| %>
   Medical Conditions: <%= history.diagnoses %><br><br>
   Medications: <%= history.medications %><br><br>
@@ -9,7 +10,7 @@
   Surgeries: <%= history.surgeries %><br><br>
   Immunizations With Dates: <%= history.immunizations_with_dates %><br><br>
 <% end %>
-<h3>The Current Problem:</h3>
+<h3><u>The Current Problem:</u></h3>
 <% @subjectives.each do |subjective| %>
   Location of the Problem: <%= subjective.location %><br><br>
   Any Observed Changes: <%= subjective.observed_changes %><br><br>
@@ -20,10 +21,10 @@
  
 
 <form method="POST" action="/edit">
-<h3>Press here to edit any of the information above: <input type="submit" value="Edit"></h3><br><br>
+<h3><u>Press here to edit any of the information above:</u> <input type="submit" value="Edit"></h3><br><br>
 </form>
 
-############################################################################################################
+<h6 class='text-center'><% '#' * 80 %></h6>
 
 <form method="GET" action="/patient/<%= @patient.id %>/comments/new">
 To create new notes, items to discuss, and questions for the doctor, press here: <input type="submit" value="Create Notes, Items, and Questions"><br><br>
@@ -42,7 +43,7 @@ To see your list of previously created notes, items to discuss, and questions fo
     <input type="hidden" value="DELETE" name="_method">
     To Logout Press Here: <input type="submit" value="Logout">
 </form>
-
+</div>
 
 
 

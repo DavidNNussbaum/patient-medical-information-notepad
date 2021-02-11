@@ -14,9 +14,10 @@ end
 
 require './app/controllers/application_controller'
 require_all 'app'
-# require './public/stylesheets/main"'
-# <link rel="stylesheet" href="./public/stylesheets/main"> 
-# <link rel="stylesheet" href="./public/stylesheets/main"> 
-# <a href="https://www.google.com">Google</a> 
-# <img src="https://i.imgur.com/H1qsYEl.png" alt="comedic crow gets wholesome support"> 
- 
+require 'dotenv/load'
+# ruby -e "require 'securerandom'; puts SecureRandom.hex(20)'
+# <h1 class='text-center'><span class="border border-3">Welcome To Your Medical Information Notepad</span></h1>
+
+
+# FROM comments/show, line 14:
+# Press here to view the identifier list: <a href="/patient/<%= @comment.patient_id %>/comments">Edit</a><br><br>

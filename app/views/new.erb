@@ -1,6 +1,8 @@
-<h1>Medical Information For <%= @patient.username %></h1>
+<div class="p-3 mb-2 bg-light text-dark"> 
+<h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
+<h1 class='text-center'><span class="border border-3">Medical Information For <%= @patient.username %></span></h1>
 <form method="post" action="/info">
-    <h3>General History:</h3>
+    <h3><u>General History:</u></h3>
     Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"><br> 
     Medications: <input type="medications" name="histories[medications]" ><br>
     Allergies: <input type="allergies" name="histories[allergies]"><br>
@@ -8,17 +10,18 @@
     Surgeries: <input type="surgeries" name="histories[surgeries]"><br>
     Immunizations With Dates: <input type="immunizations_with_dates" name="histories[immunizations_with_dates]"><br>
      
-    <h3>The Current Problem:</h3>
+    <h3><u>The Current Problem:</u></h3>
     Location of the Problem:<input type="location" name="subjectives[location]"><br>
     Any Observed Changes: <input type="observed_changes" name="subjectives[observed_changes]"><br>
     What You Are Feeling: <input type="sensation_changes" name="subjectives[sensation_changes]"><br>
     What Is The Level Of Discomfort On A Scale Of 1 To 10: <input type="scale_1_to_10" name="subjectives[scale_1_to_10]"><br>
     How Long This Has Been Going On:<input type="length_of_time" name="subjectives[length_of_time]"><br>
-    <h3>Press Here To Enter The Above Information: <input type="submit" value="Save Information"></h3>
+    <h3><u>Press Here To Enter The Above Information:</u> <input type="submit" value="Save Information"></h3>
 </form>
    
-     <h3>Press Below To Logout Without Saving The Information:</h3>
+      
 <form method="POST" action="/logout">
         <input type="hidden" value="DELETE" name="_method">
-        <input type="submit" value="Logout">
+        <h3><u>Press Here To Logout Without Saving The Information:</u> <input type="submit" value="Logout"></h3>
 </form>
+</div>

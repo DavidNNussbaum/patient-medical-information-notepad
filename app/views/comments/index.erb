@@ -1,14 +1,22 @@
-<h1>List of Identifiers For <%= @patient.username %>:</h1><br><br>
-<h2>Choose The Identifier For The Note, Items, Or Questions That You Want 
-To Edit or Delete and Click on It.</h2>
-
+<div class="p-3 mb-2 bg-warning text-dark"> 
+<h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
+<h1 class='text-center'><span class="border border-3">List of Identifiers For <%= @patient.username %>:</span></h1><br><br>
+<h2 class='text-center'><span class="border border-3">Choose The Identifier For The Note, Items, Or Questions</span></h2>
+<h2 class='text-center'><span class="border border-3">That You Want To View, Edit, or Delete and Click on It.</span></h2>
+ &nbsp; &nbsp; &nbsp;&nbsp;<u> Identifiers:</u><br>
 <ul>
     <%  @comments.each do |comment| %>
         <li><a href="/patient/<%= comment.patient_id %>/comment/<%= comment.id %>"><%= comment.identifier %></a></li>
     <% end %><br><br>
 </ul>
-
+ 
 
 <form method="POST" action="/show">
-To return to the medical information page press here: <input type="submit" value="Return To Medical Inforation"></h6>
+<u>To return to the medical information page press here:</u> <input type="submit" value="Return To Medical Information"></h6>
 </form>
+
+<form method="POST" action="/logout">
+    <input type="hidden" value="DELETE" name="_method">
+    <u>To Logout Press Here:</u> <input type="submit" value="Logout">
+</form>
+</div>
