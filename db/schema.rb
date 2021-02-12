@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210211235738) do
+ActiveRecord::Schema.define(version: 20210212000330) do
 
   create_table "comments", force: :cascade do |t|
     t.text    "identifier"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20210211235738) do
     t.text    "surgeries"
     t.text    "immunizations_with_dates"
     t.integer "patient_id"
-    t.integer "subjective_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -43,7 +42,6 @@ ActiveRecord::Schema.define(version: 20210211235738) do
     t.text    "sensation_changes"
     t.string  "scale_1_to_10"
     t.text    "length_of_time"
-    t.integer "history_id"
     t.integer "patient_id"
   end
 
