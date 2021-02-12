@@ -4,5 +4,5 @@ class Patient < ActiveRecord::Base
     has_many :comments
 
     has_secure_password
-    # validates :username, :password, presence: true, uniqueness :true
+    validates :username, presence: true, uniqueness: true
 end

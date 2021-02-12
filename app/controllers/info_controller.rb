@@ -56,7 +56,6 @@ class InfoController < ApplicationController
         histories.update_all(:allergies => params[:histories]&.fetch(:allergies))
         histories.update_all(:current_treatments => params[:histories]&.fetch(:current_treatments))
         histories.update_all(:surgeries => params[:histories]&.fetch(:surgeries))
-        histories.update_all(:surgeries => params[:histories]&.fetch(:surgeries))
         histories.update_all(:immunizations_with_dates => params[:histories]&.fetch(:immunizations_with_dates))
         end
         if params[:subjectives]
