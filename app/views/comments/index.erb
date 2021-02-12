@@ -11,11 +11,11 @@
 </ul>
  
 
-<form method="POST" action="/show">
+<form method="POST" action="patients/<%= patient.id %>id/info">
 <u>To return to the medical information page press here:</u> <input type="submit" value="Return To Medical Information"></h6>
 </form>
 
-<form method="POST" action="/logout">
+<form method="GET" action="/logout">
     <input type="hidden" value="DELETE" name="_method">
     <u>To Logout Press Here:</u> <input type="submit" value="Logout">
 </form>

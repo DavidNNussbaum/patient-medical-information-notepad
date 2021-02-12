@@ -15,7 +15,7 @@ Questions For The Doctor: <%= @comment.questions %><br><br><br>
 <u>Press here to view the identifier list:</u> <input type="submit" value="View List"><br><br>
 
 
-<form method="GET" action="/show">
+<form method="GET" action="patients/<%= patient.id %>/show">
 <u>To return to the medical information page press here:</u> <input type="submit" value="Press"><br><br>
 </form>
 
