@@ -5,5 +5,6 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use CommentsController
-use InfoController
+use PatientController
+use SessionsController
 run ApplicationController

@@ -15,46 +15,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  post '/login' do
-    patient = Patient.find_by_username(params["username"])
-     if patient.authenticate(params["password"])
-         session["patient_id"] = patient.id
-        redirect '/show'
-        else
-            redirect '/login'
-        end
-    
-  end
-    
-  get '/relogin' do
-      erb :login
-  end
-    
- 
-
-  post '/signup' do
-    patient = Patient.new(username: params["username"], password: params["password"])
-        if patient.save
-            session["patient_id"] = patient.id
-            redirect '/new'
-        else
-          redirect '/show'
-    end
- end
-
-
-  delete '/logout' do
-    session.delete("patient_id")
-    redirect "/relogin"
-  end
-
-
-  get '/new' do
-    @patient = Patient.find(session["patient_id"])
-    erb :new
-  end
- 
-
   helpers do
 
     def current_user  

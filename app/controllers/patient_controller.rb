@@ -1,6 +1,17 @@
-class InfoController < ApplicationController
+class PatientController < ApplicationController
 
-    post '/info' do
+    post '/signup' do
+        patient = Patient.new(username: params["username"], password: params["password"])
+            if patient.save
+                session["patient_id"] = patient.id
+                redirect '/new'
+            else
+              redirect '/show'
+        end
+      end
+    
+    
+    post 'patients/:id/info' do
         @patient = Patient.find(session["patient_id"])
         histories = History.new(:diagnoses => params[:histories][:diagnoses])
         histories.update(:medications => params[:histories][:medications])
@@ -19,26 +30,20 @@ class InfoController < ApplicationController
         subjectives.update(:patient_id => @patient.id)
         subjectives.save
         
-        redirect '/show'
+        redirect 'patients/:id/info'
     end
 
-    get '/show' do
+    get 'patients/:id/info' do
+        redirect_if_not_logged_in
         @patient = Patient.find(session["patient_id"])
-        @histories = History.where(patient_id: @patient.id)
-        @subjectives = Subjective.where(patient_id: @patient.id)
-        erb :show
-    end
-
-
-    get '/show' do
-        @patient = Patient.find(session["patient_id"])
-        @histories = History.where(patient_id: @patient.id)
-        @subjectives = Subjective.where(patient_id: @patient.id)
+        redirect "/patients/#{current_user.id}" if current_use != @patient
+        @patient.history = History.where(patient_id: @patient.id)
+        @patient.subjective = Subjective.where(patient_id: @patient.id)
          
-        erb :show
+        erb :patients/info
     end
 
-    post '/edit' do
+    get 'patients/:id/edit' do
         @patient = Patient.find(session["patient_id"])
         @histories = History.where(patient_id: @patient.id)
         @subjectives = Subjective.where(patient_id: @patient.id)
@@ -47,7 +52,7 @@ class InfoController < ApplicationController
         erb :edit
     end
 
-     patch '/show' do
+     patch 'patients/:id/info' do
         @patient = Patient.find(session["patient_id"])
         histories = History.where(patient_id: @patient.id)
         if params[:histories]
@@ -76,10 +81,10 @@ class InfoController < ApplicationController
         @subjectives = Subjective.where(patient_id: @patient.id)
         @comments = Comment.where(patient_id: @patient.id)
 
-        erb :show
+        erb :patients/info
      end
 
-    post '/delete' do
+    post 'patients/:id/delete' do
         @patient = Patient.find(session["patient_id"])
         @pull_his = History.where(patient_id: @patient.id).destroy_all
         @pull_sub = Subjective.where(patient_id: @patient.id).destroy_all
