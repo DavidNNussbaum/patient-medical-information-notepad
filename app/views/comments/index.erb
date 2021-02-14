@@ -3,7 +3,7 @@
 <h1 class='text-center'><span class="border border-3">List of Identifiers For <%= @patient.username %>:</span></h1><br><br>
 <h2 class='text-center'><span class="border border-3">Choose The Identifier For The Note, Items, Or Questions</span></h2>
 <h2 class='text-center'><span class="border border-3">That You Want To View, Edit, or Delete and Click on It.</span></h2>
- &nbsp; &nbsp; &nbsp;&nbsp;<u> Identifiers:</u><br>
+ &nbsp; &nbsp; &nbsp;&nbsp;<u> Identifiers:</u><br><br>
 <ul>
     <%  @comments.each do |comment| %>
         <li><a href="/patients/<%= comment.patient_id %>/comment/<%= comment.id %>"><%= comment.identifier %></a></li>
@@ -14,12 +14,12 @@
 <u>To create new notes, items to discuss, and questions for the doctor, press here:</u> <input type="submit" value="Create Notes, Items, and Questions"><br><br>
 </form>
 
-<form method="POST" action="/patients/<%= @patient.id %>/info">
+<form method="GET" action="/patients/<%= @patient.id %>/info">
 <u>To return to the medical information page press here:</u> <input type="submit" value="Return To Medical Information"><br><br>
 </form>
 
 <form method="POST" action="/logout">
-    <input type="hidden" value="DELETE" name="_method">
-    <u>To logout press Here:</u> <input type="submit" value="Logout">
+    To Logout Press Here: <input type="submit" value="Logout">
 </form>
+
 </div>

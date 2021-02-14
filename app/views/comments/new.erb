@@ -8,7 +8,7 @@ There Will Be A List Of Identifiers From Which You Can Pick What You Want To See
 The Identifier Can Be The Date You Created It Or Anything That Will Allow You To Identify This Note, 
 Items, and Questions.</h3><br><br>   
 <form action="/patients/<%= @patient.id %>/comments" method="POST">
-    Identifier:<input type="identifier" name="comments[identifier]"><br>
+    Identifier:<input type="identifier" name="comments[identifier]"><br><br>
     Note:<br><textarea name="comments[note]"></textarea><br>
     Items To Discuss With Doctor:<br><textarea name="comments[items_to_discuss]"></textarea><br>
     Questions For The Doctor:<br><textarea name="comments[questions]"></textarea><br><br>

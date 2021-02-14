@@ -15,7 +15,7 @@ end
             session["patient_id"] = patient.id
             redirect '/new'
         else
-            redirect '/show'
+            redirect "/patients/:id/new" 
             
         end
     end
@@ -23,9 +23,8 @@ end
     
     post '/patients/:id/info' do
         redirect_if_not_logged_in
-        @patient = Patient.find(session["patient_id"])
+        patient = Patient.find(session["patient_id"])
         history = History.new(:diagnoses => params[:histories][:diagnoses])
-        history.medications = params[:histories][:medications]
         history.allergies = params[:histories][:allergies]
         history.current_treatments = params[:histories][:current_treatments]
         history.surgeries = params[:histories][:surgeries]
@@ -54,7 +53,7 @@ end
         @history = History.find_by(patient_id: @patient.id)
         @subjective = Subjective.find_by(patient_id: @patient.id)
          
-        erb :'patients/info'
+        erb :'/patients/info'
     end
 
     get '/patients/:id/edit' do
@@ -100,7 +99,7 @@ end
         redirect "patients/#{patient.id}/info"
      end
 
-    delete '/patients/:id' do
+    delete '/patients/:id/info' do
         redirect_if_not_logged_in
         @patient = Patient.find(session["patient_id"])
         @pull_his = History.where(patient_id: @patient.id).destroy_all
