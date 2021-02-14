@@ -20,7 +20,7 @@ Questions For The Doctor: <%= @comment.questions %><br><br><br>
 </form>
 
 
-<form method="POST" action="/patients/<%= @comment.patient_id %>/comment/<%= @comment.id %>">
+<form method="POST" action="/patients/<%= @comment.patient_id %>/comments/<%= @comment.id %>">
 <input type="hidden" value="DELETE" name="_method">
 <u>To delete this information press here:</u> <input type="submit" value="delete">
 </form>

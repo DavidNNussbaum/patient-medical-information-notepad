@@ -10,13 +10,16 @@
     <% end %><br><br>
 </ul>
  
+<form method="GET" action="/patients/<%= @patient.id %>/comments/new">
+<u>To create new notes, items to discuss, and questions for the doctor, press here:</u> <input type="submit" value="Create Notes, Items, and Questions"><br><br>
+</form>
 
 <form method="POST" action="/patients/<%= @patient.id %>/info">
-<u>To return to the medical information page press here:</u> <input type="submit" value="Return To Medical Information"></h6>
+<u>To return to the medical information page press here:</u> <input type="submit" value="Return To Medical Information"><br><br>
 </form>
 
 <form method="POST" action="/logout">
     <input type="hidden" value="DELETE" name="_method">
-    <u>To Logout Press Here:</u> <input type="submit" value="Logout">
+    <u>To logout press Here:</u> <input type="submit" value="Logout">
 </form>
 </div>

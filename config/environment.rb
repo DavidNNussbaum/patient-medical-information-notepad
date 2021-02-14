@@ -15,6 +15,7 @@ end
 require './app/controllers/application_controller'
 require_all 'app'
 require 'dotenv/load'
+ 
 
 # <h1 class='text-center'><span class="border border-3">Welcome To Your Medical Information Notepad</span></h1>
 

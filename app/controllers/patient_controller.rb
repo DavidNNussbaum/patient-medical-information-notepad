@@ -1,12 +1,12 @@
 class PatientController < ApplicationController
 
-    get '/patient/:id/sessions' do
+    get '/patients/:id/sessions' do
         erb :'/sessions/index'
     end
 
     get "/patients/:id/new" do
-
-    erb :new
+        @patient = Patient.find(session["patient_id"])
+        erb :new
 end
     
     post '/signup' do
@@ -46,7 +46,9 @@ end
     get '/patients/:id/info' do
         redirect_if_not_logged_in
         @patient = Patient.find(session["patient_id"])
-        if current_user != @patient
+        if Subjective.find_by(patient_id: @patient.id) == nil && History.find_by(patient_id: @patient.id) == nil && Comment.find_by(patient_id: @patient.id) == nil
+            redirect "/patients/#{current_user.id}/new" 
+        elsif current_user != @patient
             redirect "/patients/#{current_user.id}"
         end
         @history = History.find_by(patient_id: @patient.id)

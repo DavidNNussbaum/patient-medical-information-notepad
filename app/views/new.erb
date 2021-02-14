@@ -1,7 +1,7 @@
 <div class="p-3 mb-2 bg-light text-dark"> 
 <h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
 <h1 class='text-center'><span class="border border-3">Medical Information For <%= @patient.username %></span></h1>
-<form method="post" action="/info">
+<form method="post" action="/patients/<%= @patient.id %>/info">
     <h3><u>General History:</u></h3>
     Medical Conditions: <input type="diagnoses" name="histories[diagnoses]"><br> 
     Medications: <input type="medications" name="histories[medications]" ><br>

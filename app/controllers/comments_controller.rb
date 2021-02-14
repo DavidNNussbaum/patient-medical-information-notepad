@@ -23,9 +23,14 @@ class CommentsController < ApplicationController
 
     get '/patients/:patient_id/comments' do
         redirect_if_not_logged_in
+        if Comment.all == nil
+            "You have no saved comments and are being redirected to the information page."
+            erb :"/patients/user_id/info"
+        else
         @patient = Patient.find(params[:patient_id])
         @comments = Comment.where(patient_id: @patient.id)
         erb :'/comments/index'
+        end
     end
 
     post '/patients/:patient_id/comments' do
@@ -43,11 +48,15 @@ class CommentsController < ApplicationController
      end
 
     
-    delete '/patients/:patient_id/comment/:id' do
+    delete '/patients/:patient_id/comments/:id' do
         redirect_if_not_logged_in
         patient = Patient.find(params[:patient_id])
         comment = Comment.find_by(id: params[:id])
         comment.delete
-        redirect "/patients/#{patient.id}/comments"
+        if Comment.all == nil
+            redirect "'patients/:id/info'"
+        else
+           redirect "/patients/#{patient.id}/comments"
+        end
     end
 end
