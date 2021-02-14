@@ -7,7 +7,7 @@ And Then Return To This Page To Change The Second Section.
 
 <h3><u>General History:</u></h3>
 <% @histories.each do |his| %>
-<form method="post" action="/info">
+<form method="post" action="/patients/<%=@patient.id %>/info">
 <input type="hidden" value="PATCH" name="_method">
     Medical Conditions: <input type="text" name="histories[diagnoses]" value="<%= his.diagnoses %>"><br> 
     Medications: <input type="text" name="histories[medications]" value="<%= his.medications %>"><br>
@@ -19,11 +19,11 @@ And Then Return To This Page To Change The Second Section.
 </form>
 <% end %>
 
-<h6 class='text-center'><$= '#' * 80 %></h6>
+<h6 class='text-center'><%= '#' * 80 %></h6>
  
 <h3><u>The Current Problem:</u></h3>
 <% @subjectives.each do |sub| %>
-    <form method="post" action="patient/<%= patient.id %>/info">
+    <form method="post" action="/patients/<%= @patient.id %>/info">
     <input type="hidden" value="PATCH" name="_method">
     Location of the Problem:<input type="text" name="subjectives[location]" value="<%= sub.location %>" ><br>
     Any Observed Changes: <input type="text" name="subjectives[observed_changes]" value="<%= sub.observed_changes %>"><br>

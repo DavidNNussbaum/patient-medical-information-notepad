@@ -6,16 +6,16 @@
  &nbsp; &nbsp; &nbsp;&nbsp;<u> Identifiers:</u><br>
 <ul>
     <%  @comments.each do |comment| %>
-        <li><a href="/patient/<%= comment.patient_id %>/comment/<%= comment.id %>"><%= comment.identifier %></a></li>
+        <li><a href="/patients/<%= comment.patient_id %>/comment/<%= comment.id %>"><%= comment.identifier %></a></li>
     <% end %><br><br>
 </ul>
  
 
-<form method="POST" action="patients/<%= patient.id %>id/info">
+<form method="POST" action="/patients/<%= @patient.id %>/info">
 <u>To return to the medical information page press here:</u> <input type="submit" value="Return To Medical Information"></h6>
 </form>
 
-<form method="GET" action="/logout">
+<form method="POST" action="/logout">
     <input type="hidden" value="DELETE" name="_method">
     <u>To Logout Press Here:</u> <input type="submit" value="Logout">
 </form>

@@ -11,8 +11,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    @patient = Patient.find(session["patient_id"])
-    erb :index
+     erb :'/sessions/index'
   end
 
   helpers do
@@ -24,7 +23,7 @@ class ApplicationController < Sinatra::Base
     def logged_in?
         !!current_user
     end
-
+ 
     def redirect_if_not_logged_in
         redirect '/login' if !logged_in?
     end

@@ -1,46 +1,53 @@
 class CommentsController < ApplicationController
      
 
-    get '/patient/:patient_id/comments/new' do
+    get '/patients/:patient_id/comments/new' do
+        redirect_if_not_logged_in
         @patient = Patient.find(params[:patient_id])
         erb :'/comments/new'
     end
 
     
-    get '/patient/:patient_id/comment/:id/edit' do
+    get '/patients/:patient_id/comment/:id/edit' do
+        redirect_if_not_logged_in
         @comment = Comment.find(params[:id])
         erb :'/comments/edit'
     end
 
-    get '/patient/:patient_id/comment/:id' do
+    get '/patients/:patient_id/comment/:id' do
+        redirect_if_not_logged_in
         @patient = Patient.find(params[:patient_id])
         @comment = Comment.find(params[:id])
         erb :'/comments/show'
     end
 
-    get '/patient/:patient_id/comments' do
+    get '/patients/:patient_id/comments' do
+        redirect_if_not_logged_in
         @patient = Patient.find(params[:patient_id])
         @comments = Comment.where(patient_id: @patient.id)
         erb :'/comments/index'
     end
 
-    post '/patient/:patient_id/comments' do
+    post '/patients/:patient_id/comments' do
+        redirect_if_not_logged_in
         comment = Comment.create(identifier: params[:comments][:identifier], note: params[:comments][:identifier], items_to_discuss: params[:comments][:items_to_discuss], questions: params[:comments][:questions], patient_id: params[:patient_id])
 
-        redirect "/patient/#{comment.patient_id}/comment/#{comment.id}"
+        redirect "/patients/#{comment.patient_id}/comment/#{comment.id}"
     end
 
-     patch '/patient/:patient_id/comment/:id' do
+     patch '/patients/:patient_id/comment/:id' do
+        redirect_if_not_logged_in
         comment = Comment.find(params[:id])
-        comment.update(identifier: params[:comments][:identifier], note: params[:comments][:identifier], items_to_discuss: params[:comments][:items_to_discuss], questions: params[:comments][:questions])
-        redirect "/patient/#{comment.patient_id}/comment/#{comment.id}"
+        comment.update(identifier: params[:comments][:identifier], note: params[:comments][:note], items_to_discuss: params[:comments][:items_to_discuss], questions: params[:comments][:questions])
+        redirect "/patients/#{comment.patient_id}/comment/#{comment.id}"
      end
 
     
-    delete '/patient/:patient_id/comment/:id' do
+    delete '/patients/:patient_id/comment/:id' do
+        redirect_if_not_logged_in
         patient = Patient.find(params[:patient_id])
         comment = Comment.find_by(id: params[:id])
         comment.delete
-        redirect "/patient/#{patient.id}/comments"
+        redirect "/patients/#{patient.id}/comments"
     end
 end

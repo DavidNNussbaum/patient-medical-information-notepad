@@ -2,7 +2,7 @@
 <h1 class='text-center'><span class="border border-3">Medical Information Notepad</span></h1>
 <h1 class='text-center'><span class="border border-3">Use This Page To Edit</span></h1>
 <h1 class='text-center'><span class="border border-3">Your Note, Items, And Questions</span></h1>
-    <form action="/patient/<%= @comment.patient_id %>/comment/<%= @comment.id %>" method="POST">
+    <form action="/patients/<%= @comment.patient_id %>/comment/<%= @comment.id %>" method="POST">
     <input type="hidden" value="PATCH" name="_method">
     Identifier:<input type="text" name="comments[identifier]"value="<%= @comment.identifier %>"><br>
     Note:<br><textarea name="comments[note]"><%= @comment.note %></textarea><br>
