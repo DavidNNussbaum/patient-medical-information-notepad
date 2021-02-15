@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
 
-  post '/signup' do
-    redirect "/patients/:id/info"
-  end  
-  
   post '/login' do
         patient = Patient.find_by_username(params["username"])
-        if patient.authenticate(params["password"]) && Subjective.find_by(patient_id: patient.id) == nil && History.find_by(patient_id: patient.id) == nil && Comment.find_by(patient_id: patient.id) == nil
+        if patient == nil
+          flash[:error] = "Please enter a username."
+          redirect '/login'
+        elsif patient.authenticate(params["password"]) && Subjective.find_by(patient_id: patient.id) == nil && History.find_by(patient_id: patient.id) == nil && Comment.find_by(patient_id: patient.id) == nil 
           session["patient_id"] = patient.id
           redirect "/patients/#{patient.id}/new" 
         elsif patient.authenticate(params["password"])

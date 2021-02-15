@@ -13,10 +13,10 @@ end
         patient = Patient.new(username: params["username"], password: params["password"])
         if patient.save
             session["patient_id"] = patient.id
-            redirect '/new'
+            redirect "patients/#{patient.id}/new"
         else
-            redirect "/patients/:id/new" 
-            
+            flash[:error] = "Please enter a username and password."
+            redirect "/" 
         end
     end
     
@@ -25,18 +25,19 @@ end
         redirect_if_not_logged_in
         patient = Patient.find(session["patient_id"])
         history = History.new(:diagnoses => params[:histories][:diagnoses])
+        history.medications = params[:histories][:medications]
         history.allergies = params[:histories][:allergies]
         history.current_treatments = params[:histories][:current_treatments]
         history.surgeries = params[:histories][:surgeries]
         history.immunizations_with_dates = params[:histories][:immunizations_with_dates]
-        history.patient_id = @patient.id
+        history.patient_id = patient.id
         history.save
         subjective = Subjective.create(:location => params[:subjectives][:location])
         subjective.observed_changes = params[:subjectives][:observed_changes]
         subjective.sensation_changes = params[:subjectives][:sensation_changes]
         subjective.scale_1_to_10 = params[:subjectives][:scale_1_to_10]
         subjective.length_of_time = params[:subjectives][:length_of_time]
-        subjective.patient_id = @patient.id
+        subjective.patient_id = patient.id
         subjective.save
    
         redirect 'patients/:id/info'

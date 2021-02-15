@@ -5,9 +5,13 @@
 <h2 class='text-center'><span class="border border-3">That You Want To View, Edit, or Delete and Click on It.</span></h2>
  &nbsp; &nbsp; &nbsp;&nbsp;<u> Identifiers:</u><br><br>
 <ul>
+<% if !Comment.find_by(patient_id: current_user.id) %>
+<%= "None" %>
+<% else %>
     <%  @comments.each do |comment| %>
         <li><a href="/patients/<%= comment.patient_id %>/comment/<%= comment.id %>"><%= comment.identifier %></a></li>
     <% end %><br><br>
+<% end %>
 </ul>
  
 <form method="GET" action="/patients/<%= @patient.id %>/comments/new">

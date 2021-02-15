@@ -23,14 +23,9 @@ class CommentsController < ApplicationController
 
     get '/patients/:patient_id/comments' do
         redirect_if_not_logged_in
-        if Comment.all == nil
-            "You have no saved comments and are being redirected to the information page."
-            erb :"/patients/user_id/info"
-        else
         @patient = Patient.find(params[:patient_id])
         @comments = Comment.where(patient_id: @patient.id)
         erb :'/comments/index'
-        end
     end
 
     post '/patients/:patient_id/comments' do
