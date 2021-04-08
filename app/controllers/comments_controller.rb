@@ -24,13 +24,17 @@ class CommentsController < ApplicationController
     get '/patients/:patient_id/comments' do
         redirect_if_not_logged_in
         @patient = Patient.find(params[:patient_id])
+        if @patient.id != current_user.id
+            redirect "/patients/#{current_user.id}/comments"
+        else
         @comments = Comment.where(patient_id: @patient.id)
         erb :'/comments/index'
+        end
     end
 
     post '/patients/:patient_id/comments' do
         redirect_if_not_logged_in
-        comment = Comment.create(identifier: params[:comments][:identifier], note: params[:comments][:identifier], items_to_discuss: params[:comments][:items_to_discuss], questions: params[:comments][:questions], patient_id: params[:patient_id])
+        comment = Comment.create(identifier: params[:comments][:identifier], note: params[:comments][:note], items_to_discuss: params[:comments][:items_to_discuss], questions: params[:comments][:questions], patient_id: params[:patient_id])
 
         redirect "/patients/#{comment.patient_id}/comment/#{comment.id}"
     end

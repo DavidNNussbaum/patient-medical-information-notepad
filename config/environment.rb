@@ -20,5 +20,13 @@ require 'dotenv/load'
 # <h1 class='text-center'><span class="border border-3">Welcome To Your Medical Information Notepad</span></h1>
 
 
-# FROM comments/show, line 14:
-# Press here to view the identifier list: <a href="/patient/<%= @comment.patient_id %>/comments">Edit</a><br><br>
+# Create .env contains SESSION_SECRET=
+# Add to Gemfile: gem 'dotenv'
+# Create .gitignore contains .env
+# In IRB enter: ruby -e "require 'securerandom'; puts SecureRandom.hex(20)"  
+# [IF securerandom COMES OUT AS TRUE CAN DO JUS WORDS AFTER PUTS]
+# THEN THE NUMBER THAT COMES OUT IS COPIED WITHOUT QUOTATIONS TO AFTER SESSION_SECRET=
+# flash[:error] = "Invalid login credentials." In Gemfile must have gem 'sinatra-flash'
+# and in application_controller must add:    register Sinatra::Flash
+
+

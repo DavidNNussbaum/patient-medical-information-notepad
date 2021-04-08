@@ -1,5 +1,10 @@
 class PatientController < ApplicationController
 
+    get '/patients' do
+      @patients = Patient.all
+      erb :'patients/all'
+    end
+    
     get '/patients/:id/sessions' do
         erb :'/sessions/index'
     end
